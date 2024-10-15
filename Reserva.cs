@@ -16,19 +16,25 @@ namespace HotelRefugioDelSol
 
         public Huesped HuespedRes { get; set; }
 
+        public string FormaDeIngreso { get; set; }
+
+        public int CantValijas { get; set; }
+
         public DateTime FechaIngreso { get; set; }
 
         public DateTime FechaEgreso { get; set;}
 
         public float PrecioRes { get; set; }
 
-        public Reserva(Apartamento apartamento, Huesped huesped, DateTime fechaing, DateTime fechaEgreso)
+        public Reserva(Apartamento apartamento, Huesped huesped, DateTime fechaing, DateTime fechaEgreso, int cantValijas, string formaDeIngreso)
         {
             IdReserva = NuevoId();
             ApartamentoRes = apartamento;
             HuespedRes = huesped;
             FechaIngreso = fechaing;
             FechaEgreso = fechaEgreso;
+            FormaDeIngreso = formaDeIngreso;
+            CantValijas = cantValijas;
             PrecioRes = GenerarPrecioRes(apartamento, fechaEgreso, fechaing);
         }
 

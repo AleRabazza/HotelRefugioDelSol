@@ -20,5 +20,10 @@ namespace HotelRefugioDelSol
         public void BajaDeHuesped (int ci) { }
 
         public void ListarHuespedesPorAlfabeto() { }
+
+        public Huesped BuscarHuespedPorCi(int ci)
+        {
+
+        }
     }
 }
