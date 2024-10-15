@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelRefugioDelSol
 {
-    internal class ControladoraHuspedes
+    public class ControladoraHuspedes
     {
         public List<Huesped> HuespedesActivos {  get; set; }
 
@@ -21,9 +21,11 @@ namespace HotelRefugioDelSol
 
         public void ListarHuespedesPorAlfabeto() { }
 
-        public Huesped BuscarHuespedPorCi(int ci)
+        public Huesped? BuscarHuespedPorCi(int ci)
         {
 
         }
+
+        public void MostrarHuesped(Huesped huesped1) { }
     }
 }
