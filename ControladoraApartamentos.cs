@@ -14,6 +14,10 @@ namespace HotelRefugioDelSol
             ListaApartamentos = new List<Apartamento>();
         }
 
-        public bool AgregarApartamento (Apartamento apartamento) { } 
+        public bool AgregarApartamento (Apartamento apartamento) 
+        {
+            ListaApartamentos.Add(apartamento); 
+            return true;
+        } 
     }
 }
