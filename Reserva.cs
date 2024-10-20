@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelRefugioDelSol
 {
-    internal class Reserva
+    public class Reserva
     {
         private static int UltimoId = 0;
 
@@ -22,7 +22,7 @@ namespace HotelRefugioDelSol
 
         public DateTime FechaIngreso { get; set; }
 
-        public DateTime FechaEgreso { get; set;}
+        public DateTime FechaEgreso { get; set; }
 
         public float PrecioRes { get; set; }
 
@@ -44,5 +44,11 @@ namespace HotelRefugioDelSol
             return UltimoId;
         }
 
-        public float GenerarPrecioRes(Apartamento apartamento, DateTime fechaIngreso, DateTime fechaEgreso) {  }
+        public float GenerarPrecioRes(Apartamento apartamento, DateTime fechaIngreso, DateTime fechaEgreso) 
+        {
+            float precio = 250;
+
+            return precio;
+        }
+    }
 }
