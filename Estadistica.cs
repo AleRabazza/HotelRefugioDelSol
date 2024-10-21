@@ -81,12 +81,16 @@ namespace HotelRefugioDelSol
 
             if (huespedesOrdenados.Count > 0)
             {
-                Console.WriteLine("Huéspedes ordenados alfabéticamente:");
+                Console.WriteLine("===== Lista de Huespedes =====");
+                Console.WriteLine("");
                 foreach (Huesped huesped in huespedesOrdenados)
                 {
                     Console.WriteLine($"Nombre: {huesped.Nombre}, CI: {huesped.Ci}");
+
                 }
-            }else
+                Console.WriteLine("==============================");
+            }
+            else
             {
                 Console.WriteLine("No hay huespedes en la lista");
             }

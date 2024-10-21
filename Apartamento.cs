@@ -23,7 +23,7 @@ namespace HotelRefugioDelSol
 
         public Apartamento(string ubicacion, int numero, int CantHabit)
         {
-            CodApartamento = GenerarCodigoApartamento(this.Ubicacion, this.Numero);
+            CodApartamento = GenerarCodigoApartamento(this.Ubicacion ?? string.Empty, this.Numero);
             Ubicacion = ubicacion;
             Numero = numero;
             CantHabitaciones = CantHabit;

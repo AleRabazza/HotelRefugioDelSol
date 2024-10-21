@@ -32,7 +32,7 @@ namespace HotelRefugioDelSol
 
         public void ModificarApartamento (Apartamento apartamento)
         {
-            Apartamento aptoExistente = BuscarApartamento(apartamento.Numero);
+            Apartamento? aptoExistente = BuscarApartamento(apartamento.Numero);
             if (aptoExistente != null)
             {
                 aptoExistente.Ubicacion = apartamento.Ubicacion;
@@ -67,14 +67,14 @@ namespace HotelRefugioDelSol
         }
 
 
-        public Apartamento BuscarApartamento(int numeroApartamento)
+        public Apartamento? BuscarApartamento(int numeroApartamento)
         {
             return ListaApartamentos.Find(apto => apto.Numero == numeroApartamento);
         }
 
         public void MostrarApartamento(int numeroApartamento)
         {
-            Apartamento apartamento = BuscarApartamento(numeroApartamento);
+            Apartamento? apartamento = BuscarApartamento(numeroApartamento);
 
             if (apartamento != null)
             {

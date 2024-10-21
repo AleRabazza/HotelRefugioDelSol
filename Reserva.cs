@@ -46,7 +46,9 @@ namespace HotelRefugioDelSol
 
         public float GenerarPrecioRes(Apartamento apartamento, DateTime fechaIngreso, DateTime fechaEgreso) 
         {
-            float precio = 250;
+            int cantDias = fechaEgreso.Day - fechaIngreso.Day;
+            float precio = apartamento.Precio;
+            precio = precio * cantDias;
 
             return precio;
         }

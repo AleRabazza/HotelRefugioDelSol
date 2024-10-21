@@ -34,20 +34,6 @@ namespace HotelRefugioDelSol
             }
         }
 
-        public void ListarHuespedesPorAlfabeto()
-        {
-            ListaHuespedes.Sort();
-            Console.WriteLine("===== Lista de Huespedes =====");
-            Console.WriteLine("");
-            foreach (Huesped huesped in ListaHuespedes)
-            {
-                this.MostrarHuesped(huesped);
-            }
-            Console.WriteLine("==============================");
-    
-        }
-
-
         
 
         public Huesped? BuscarHuespedPorCi(int ci)
@@ -66,13 +52,15 @@ namespace HotelRefugioDelSol
         }
         public Huesped ModificarHuesped(Huesped huesped)
         {
-
+            Huesped huespedModificado = huesped; 
+            return huespedModificado;
         }
 
 
-        public void MostrarHuesped(Huesped huesped1) 
+        public void MostrarHuesped(Huesped huesped1)
         {
-            Console.WriteLine($"= {huesped1.Nombre} = ( {huesped1.Ci} )");
+            Console.WriteLine($"== {huesped1.Nombre} - ( {huesped1.Ci} )");
+            
             Console.WriteLine("");
         }
     }
