@@ -52,10 +52,6 @@ namespace HotelRefugioDelSol
             }
         }
 
-        //public void AgregarReservaAHistorial(int ci, Reserva reservaAgregar) { }
-
-        //public void MostrarHistorialReservas(int ci) { }
-
         public void MostrarDiezAptosMasRerservados(List<Apartamento> listaApartamentos)
         {
             ControladoraApartamentos controladoraApartamentos = new ControladoraApartamentos();

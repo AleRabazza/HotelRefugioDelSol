@@ -41,7 +41,7 @@ namespace HotelRefugioDelSol
         {
             float precioBase = 250;
             float porcentajeSobrecosto = 20;
-            float sobrecosto = precioBase * (porcentajeSobrecosto / 100);
+            float sobrecosto = precioBase + (precioBase * porcentajeSobrecosto / 100);
    
 
             if (ubicacion == "noroeste" || ubicacion == "suroeste")
