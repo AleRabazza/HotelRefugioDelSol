@@ -52,9 +52,10 @@ namespace HotelRefugioDelSol
             Console.WriteLine("(1) Agregar Huesped");
             Console.WriteLine("(2) Buscar Huesped");
             Console.WriteLine("(3) Modificar Huesped");
-            Console.WriteLine("(4) VOLVER AL MENU PRINCIPAL");
+            Console.WriteLine("(4) Eliminar Huesped");
+            Console.WriteLine("(5) VOLVER AL MENU PRINCIPAL");
             InputHuesped= Console.ReadLine() ?? string.Empty;
-
+            Console.Clear();
             switch (InputHuesped)
             {
                 case "1":
@@ -79,7 +80,8 @@ namespace HotelRefugioDelSol
                     }
                     else
                     { 
-                        Console.WriteLine("Huesped no encontrado"); 
+                        Console.WriteLine("Huesped no encontrado");
+                        Console.Clear();
                     }
                     break;
 
@@ -102,6 +104,8 @@ namespace HotelRefugioDelSol
                             string nuevoNombre = Console.ReadLine() ?? string.Empty;
                             huesped2.Nombre = nuevoNombre;
                             controladoraHuespedes.ModificarHuesped(huesped2);
+                            Console.Clear();
+                            Console.WriteLine("Modificado correctamente");
 
                         } else if (InputModificar == "2")
                         {
@@ -109,6 +113,9 @@ namespace HotelRefugioDelSol
                             int nuevaCedula = int.Parse(Console.ReadLine() ?? string.Empty);
                             huesped2.Ci = nuevaCedula;
                             controladoraHuespedes.ModificarHuesped(huesped2);
+                            Console.Clear();
+                            Console.WriteLine("Modificado correctamente");
+
 
                         }
                         else if (InputModificar == "3")
@@ -121,6 +128,8 @@ namespace HotelRefugioDelSol
                             int nuevaCedula = int.Parse(Console.ReadLine() ?? string.Empty);
                             huesped2.Ci = nuevaCedula;
                             controladoraHuespedes.ModificarHuesped(huesped2);
+                            Console.Clear();
+                            Console.WriteLine("Modificado correctamente");
                         }
                         else
                         {
@@ -129,8 +138,20 @@ namespace HotelRefugioDelSol
                     }
                     break;
 
-                case "4":
+                case "5":
                     MostrarMenu();
+                    break;
+
+                case "4":
+                    Console.WriteLine("Ingrese la cedula del huesped a eliminar");
+                    int cedula3 = int.Parse(Console.ReadLine() ?? string.Empty);
+                    Huesped? huespedEliminar = controladoraHuespedes.BuscarHuespedPorCi(cedula3);
+                    if (huespedEliminar != null) 
+                    {
+                        controladoraHuespedes.ListaHuespedes.Remove(huespedEliminar);
+                        Console.Clear();
+                        Console.WriteLine("Huesped eliminado correctamente");
+                    }
                     break;
 
                 default:
@@ -147,24 +168,37 @@ namespace HotelRefugioDelSol
             Console.WriteLine("Controladora De Apartamentos");
             Console.WriteLine("(1) Agregar Apartamento");
             Console.WriteLine("(2) Buscar Apartamento");
-            Console.WriteLine("(3) Listar Apartamentos disponibles");
-            Console.WriteLine("(4) Modificar Apartamento");
-            Console.WriteLine("(5) VOLVER AL MENU PRINCIPAL"); 
+            Console.WriteLine("(3) Eliminar Apartameno");
+            Console.WriteLine("(4) Listar Apartamentos disponibles");
+            Console.WriteLine("(5) Modificar Apartamento");
+            Console.WriteLine("(6) VOLVER AL MENU PRINCIPAL"); 
 
             inputApartamento = Console.ReadLine() ?? string.Empty;
 
             switch (inputApartamento) { 
 
                 case  "1": //AGREGAR VERIFICACIONES 
+                    string ubicacion = string.Empty;
+                    int numero = 0;
+                    int cantHabitaciones = 0;
 
-                    Console.WriteLine("Ingrese la ubicación del apartamento:");
-                    string ubicacion = Console.ReadLine() ?? string.Empty;
+                    do
+                    {
+                        Console.WriteLine("Ingrese la ubicación del apartamento:");
+                        ubicacion = Console.ReadLine() ?? string.Empty;
+                    } while (ubicacion != string.Empty);
 
-                    Console.WriteLine("Ingrese el número del apartamento:");
-                    int numero = int.Parse(Console.ReadLine() ?? string.Empty);
+                    do
+                    {
+                        Console.WriteLine("Ingrese el número del apartamento:");
+                        numero = int.Parse(Console.ReadLine() ?? string.Empty);
+                    } while (numero != 0 || numero != int.Parse(string.Empty));
 
-                    Console.WriteLine("Ingrese la cantidad de habitaciones:");
-                    int cantHabitaciones = int.Parse(Console.ReadLine() ?? string.Empty);
+                    do {
+                        Console.WriteLine("Ingrese la cantidad de habitaciones:");
+                        cantHabitaciones = int.Parse(Console.ReadLine() ?? string.Empty);
+                        
+                    } while (cantHabitaciones != 0 || cantHabitaciones != int.Parse(string.Empty));
 
                     Apartamento nuevoApartamento = new Apartamento(ubicacion, numero, cantHabitaciones);
                     controladoraApartamento.AgregarApartamento(nuevoApartamento);
@@ -176,25 +210,38 @@ namespace HotelRefugioDelSol
                     break;
 
                 case "2":
-                    Console.WriteLine("Ingrese el numero del apartamento que desea buscar:");
-                    int apartamentoBuscar = int.Parse(Console.ReadLine() ?? string.Empty);
-
-                    controladoraApartamento.BuscarApartamento(apartamentoBuscar);
-
-                    break;
-
-                case "3":
-                    Console.WriteLine("Apartamentos disponibles del hotel:");
-                    controladoraApartamento.ListarApartamentosDisponibles();
+                    int apartamentoBuscar = 0;
+                    do
+                    {
+                        Console.WriteLine("Ingrese el numero del apartamento que desea buscar:");
+                        apartamentoBuscar = int.Parse(Console.ReadLine() ?? string.Empty);
+                    }while (apartamentoBuscar != int.Parse(string.Empty));
+                    Apartamento? aptoBuscado = controladoraApartamento.BuscarApartamento(apartamentoBuscar);
+                    if (aptoBuscado != null)
+                    {
+                        controladoraApartamento.MostrarApartamento(aptoBuscado.Numero);
+                    } else 
+                    {
+                        Console.WriteLine("Apartamento no encontrado");
+                    }
 
                     break;
 
                 case "4":
-                    Console.WriteLine("Ingrese el numero del apartamento que desea modificar: ");
+                    Console.WriteLine("===== Apartamentos disponibles del hotel =====");
+                    controladoraApartamento.ListarApartamentosDisponibles();
+                    Console.WriteLine("");
+                    Console.WriteLine("==============================================");
+
+                    break;
+
+                case "5":
+                    Console.WriteLine("Ingrese el numero del apartamento que desea modificar");
                     int numApartamento = int.Parse(Console.ReadLine() ?? string.Empty);
                     Apartamento? apartamento = controladoraApartamento.BuscarApartamento(numApartamento);
                     if (apartamento != null)
                     {
+                        Console.Clear();
                         controladoraApartamento.MostrarApartamento(numApartamento);
                         Console.WriteLine("Ingrese la opcion del Apartamento que desea modificar: ");
                         Console.WriteLine("(1) Ubicacion");
@@ -246,6 +293,22 @@ namespace HotelRefugioDelSol
                         }
                     }
                     break;
+
+                case "6":
+                    MostrarMenu();
+                    break;
+
+                case "3":
+                    controladoraApartamento.ListarApartamentosDisponibles();
+                    int numeroEliminar = int.Parse(string.Empty);
+                    do
+                    {
+                        Console.WriteLine("Ingrese el numero del apartamento a eliminar");
+                        numeroEliminar = int.Parse(Console.ReadLine() ?? string.Empty);
+                    } while (numeroEliminar != int.Parse(string.Empty));
+                    controladoraApartamento.EliminarApartamento(numeroEliminar);
+                    break;
+
 
                 default:
                     Console.WriteLine("La opcion ingresada no es valida");

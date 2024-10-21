@@ -54,11 +54,12 @@ namespace HotelRefugioDelSol
 
             if (apartamentosDisponibles.Count > 0)
             {
-                Console.WriteLine("Apartamentos disponibles:");
+                Console.WriteLine("=========Apartamentos disponibles =========");
                 foreach (Apartamento apto in apartamentosDisponibles)
                 {
                     Console.WriteLine($"Número: {apto.Numero}, Ubicación: {apto.Ubicacion}, Habitaciones: {apto.CantHabitaciones}, Precio: {apto.Precio} USD");
                 }
+                Console.WriteLine("===========================================");
             }
             else
             {
@@ -88,6 +89,22 @@ namespace HotelRefugioDelSol
             else
             {
                 Console.WriteLine("Apartamento no encontrado.");
+            }
+        }
+
+        public void EliminarApartamento(int numeroEliminar)
+        {
+            Apartamento? aptoAEliminar = BuscarApartamento(numeroEliminar);
+            if (aptoAEliminar != null)
+            {
+                ListaApartamentos.Remove(aptoAEliminar);
+                Console.Clear();
+                Console.WriteLine("Apartamento eliminado correctamente");
+            }
+            else
+            {
+                Console.Clear();
+                Console.WriteLine("Apartamento no encontrado");
             }
         }
     }
