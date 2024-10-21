@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelRefugioDelSol
 {
-    internal class Huesped
+    public class Huesped
     {
         public string Nombre { get; set; }
 
