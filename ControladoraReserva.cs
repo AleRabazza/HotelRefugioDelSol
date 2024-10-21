@@ -17,7 +17,7 @@ namespace HotelRefugioDelSol
 
         public bool AniadirReserva(Reserva reservaAAniadir) { }
 
-        public bool CancelarReserva(Reserva reservaACancelar) { }
+        public bool CancelarReserva(int id) { }
 
         public void MostrarReserva() { }
 
@@ -25,6 +25,12 @@ namespace HotelRefugioDelSol
 
         public int CantDiasHospedado(DateTime fechaIngreso, DateTime fechaOutgreso) { }
 
+        public List BuscarReservasPorHuesped(int cedula)
+        {
+
+        }
+
+        public void MostrarReservasPorHuesped(List<Reserva> listaReservas) { }
 
     }
 }

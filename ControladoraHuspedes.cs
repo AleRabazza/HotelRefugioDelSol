@@ -25,6 +25,11 @@ namespace HotelRefugioDelSol
         {
 
         }
+        public Huesped ModificarHuesped(Huesped huesped)
+        {
+
+        }
+
 
         public void MostrarHuesped(Huesped huesped1) { }
     }

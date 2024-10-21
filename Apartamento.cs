@@ -32,12 +32,39 @@ namespace HotelRefugioDelSol
             CantVecesReservado = 0;
         }
 
-        public string GenerarCodigoApartamento(String ubicacion, int numero) { }
+        public string GenerarCodigoApartamento(String ubicacion, int numero) 
+        {
+            return $"{ubicacion}-{numero}";
+        }
 
-        public float GenerarPrecio(string ubicacion) { }
+        public float GenerarPrecio(string ubicacion)
+        {
+            float precioBase = 250;
+            float porcentajeSobrecosto = 20;
+            float sobrecosto = precioBase * (porcentajeSobrecosto / 100);
+   
+
+            if (ubicacion == "noroeste" || ubicacion == "suroeste")
+            {
+                return sobrecosto;
+
+            }else
+            {
+                return precioBase;
+            }
+        }
         
-        public float MostrarAreaTotal(int CantHabitaciones) { }
-        
-        public bool AptoParaMastoctas(float Ubi) { }
+        public int? MostrarAreaTotal(int CantHabitaciones) {
+
+            if (CantHabitaciones == 4) {
+                return 240;
+            }else if (CantHabitaciones == 3)
+            {
+                return 180;
+            }else {
+                Console.WriteLine("La cantidad de habitaciones fue mal ingresada");
+                return null;
+            }
+        }
     }
 }

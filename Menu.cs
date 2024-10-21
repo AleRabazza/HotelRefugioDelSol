@@ -11,6 +11,10 @@ namespace HotelRefugioDelSol
     {
         public void MostrarMenu()
         {
+            ControladoraApartamentos apartamentos = new ControladoraApartamentos(); 
+            ControladoraHuspedes huespedes = new ControladoraHuspedes();
+            ControladoraReserva reservas = new ControladoraReserva();
+
             string Input = string.Empty;
             Console.WriteLine("Bienvenido al Sistema de Reserva de 'Hotel Refugio del Sol'");
             while (Input != "salir")
@@ -20,20 +24,28 @@ namespace HotelRefugioDelSol
                 Console.WriteLine("(2) Ingresar a la controladora de Apartamentos");
                 Console.WriteLine("(3) Ingresar a la controladora de Reservas");
                 Console.WriteLine("(4) Ingresar a Estadisticas");
-                Input = Console.ReadLine();
+                Input = Console.ReadLine() ?? string.Empty;
                 switch (Input)
                 {
                     case "1":
-
+                        MostrarMenuHuespedes(huespedes);
+                        break;
+                    case "2":
+                        MostrarMenuApartamento(apartamentos); 
+                        break;
+                    case "3":
+                        MostrarMenuReservas(reservas);
+                        break;
+                    case "4":
+                        MostrarMenuEstadisticas(huespedes, apartamentos, reservas);
                         break;
                 }
             }
 
         }
 
-        public void MostrarMenuHuespedes()
+        public void MostrarMenuHuespedes(ControladoraHuspedes controladoraHuespedes)
         {
-            ControladoraHuspedes ControladoraHuespedes = new ControladoraHuspedes();
             string InputHuesped = string.Empty;
             Console.WriteLine("Controladora De Huespedes");
             Console.WriteLine("(1) Agregar Huesped");
@@ -41,6 +53,7 @@ namespace HotelRefugioDelSol
             Console.WriteLine("(3) Listar Huespedes por alfabeto");
             Console.WriteLine("(4) Modificar Huesped");
             Console.WriteLine("(5) VOLVER AL MENU PRINCIPAL");
+            InputHuesped= Console.ReadLine() ?? string.Empty;
 
             switch (InputHuesped)
             {
@@ -50,7 +63,7 @@ namespace HotelRefugioDelSol
                     Console.WriteLine("Ingrese la cedula del Huesped");
                     int cedula = int.Parse(Console.ReadLine() ?? string.Empty);
                     Huesped huesped1 = new Huesped(nombre, cedula);
-                    ControladoraHuespedes.IngresoHuesped(huesped1);
+                    controladoraHuespedes.IngresoHuesped(huesped1);
                     Console.Clear();
                     Console.WriteLine("Agregado con exito");
                     Console.WriteLine("");
@@ -59,10 +72,10 @@ namespace HotelRefugioDelSol
                 case "2":
                     Console.WriteLine("Ingrese la cedula del Huesped a buscar");
                     int cedula1 = int.Parse (Console.ReadLine() ?? string.Empty);
-                    Huesped? huespedBuscado = ControladoraHuespedes.BuscarHuespedPorCi(cedula1);
+                    Huesped? huespedBuscado = controladoraHuespedes.BuscarHuespedPorCi(cedula1);
                     if (huespedBuscado != null)
                     {
-                        ControladoraHuespedes.MostrarHuesped(huespedBuscado);
+                        controladoraHuespedes.MostrarHuesped(huespedBuscado);
                     }
                     else
                     { 
@@ -71,27 +84,348 @@ namespace HotelRefugioDelSol
                     break;
 
                 case "3":
-                    ControladoraHuespedes.ListarHuespedesPorAlfabeto();
+                    controladoraHuespedes.ListarHuespedesPorAlfabeto();
                     break;
 
                 case "4":
                     Console.WriteLine("Ingrese la cedula del Huesped a modificar");
                     int cedula2 = int.Parse(Console.ReadLine() ?? string.Empty);
-                    Huesped? huesped2 = ControladoraHuespedes.BuscarHuespedPorCi(cedula2);
+                    Huesped? huesped2 = controladoraHuespedes.BuscarHuespedPorCi(cedula2);
                     if (huesped2 != null)
                     {
-                        ControladoraHuespedes.MostrarHuesped(huesped2);
+                        controladoraHuespedes.MostrarHuesped(huesped2);
                         Console.WriteLine("Ingrese el valor que desea modificar");
                         Console.WriteLine("(1) Nombre");
                         Console.WriteLine("(2) Cedula");
-                        string InputModificar = Console.ReadLine();
-                        if (InputModificar != null) 
+                        Console.WriteLine("(3) Nombre y Cedula");
+                        string InputModificar = Console.ReadLine() ?? string.Empty;
+
+                        if (InputModificar == "1")
                         {
-                            
+                            Console.WriteLine("Ingrese el nuevo nombre del huesped: ");
+                            string nuevoNombre = Console.ReadLine() ?? string.Empty;
+                            huesped2.Nombre = nuevoNombre;
+                            controladoraHuespedes.ModificarHuesped(huesped2);
+
+                        } else if (InputModificar == "2")
+                        {
+                            Console.WriteLine("Ingrese la nueva cedula del huesped: ");
+                            int nuevaCedula = int.Parse(Console.ReadLine() ?? string.Empty);
+                            huesped2.Ci = nuevaCedula;
+                            controladoraHuespedes.ModificarHuesped(huesped2);
+
+                        }
+                        else if (InputModificar == "3")
+                        {
+                            Console.WriteLine("Ingrese el nuevo nombre del huesped: ");
+                            string nuevoNombre = Console.ReadLine() ?? string.Empty;
+                            huesped2.Nombre = nuevoNombre;
+
+                            Console.WriteLine("Ingrese la nueva cedula del huesped: ");
+                            int nuevaCedula = int.Parse(Console.ReadLine() ?? string.Empty);
+                            huesped2.Ci = nuevaCedula;
+                            controladoraHuespedes.ModificarHuesped(huesped2);
+                        }
+                        else
+                        {
+                            Console.WriteLine("La opcion ingresada no es correcta.");
                         }
                     }
                     break;
+
+                case "5":
+                    MostrarMenu();
+                    break;
+
+                default:
+                    Console.WriteLine("La opcion ingresada no es valida");
+                    Console.WriteLine(" ");
+                    MostrarMenuHuespedes();
+                    break;
             }
+        }
+
+        public void MostrarMenuApartamento(ControladoraApartamentos controladoraApartamento)
+        {
+            string inputApartamento = string.Empty;
+            Console.WriteLine("Controladora De Apartamentos");
+            Console.WriteLine("(1) Agregar Apartamento");
+            Console.WriteLine("(2) Buscar Apartamento");
+            Console.WriteLine("(3) Listar Apartamentos disponibles");
+            Console.WriteLine("(4) Modificar Apartamento");
+            Console.WriteLine("(5) VOLVER AL MENU PRINCIPAL"); 
+
+            inputApartamento = Console.ReadLine() ?? string.Empty;
+
+            switch (inputApartamento) { 
+
+                case  "1": //AGREGAR VERIFICACIONES 
+
+                    Console.WriteLine("Ingrese la ubicación del apartamento:");
+                    string ubicacion = Console.ReadLine() ?? string.Empty;
+
+                    Console.WriteLine("Ingrese el número del apartamento:");
+                    int numero = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine("Ingrese la cantidad de habitaciones:");
+                    int cantHabitaciones = int.Parse(Console.ReadLine());
+
+                    Apartamento nuevoApartamento = new Apartamento(ubicacion, numero, cantHabitaciones);
+                    controladoraApartamento.AgregarApartamento(nuevoApartamento);
+
+                    Console.Clear();
+                    Console.WriteLine("Agregado con exito");
+                    Console.WriteLine("");
+
+                    break;
+
+                case "2":
+                    Console.WriteLine("Ingrese el numero del apartamento que desea buscar:");
+                    int apartamentoBuscar = int.Parse(Console.ReadLine());
+
+                    controladoraApartamento.BuscarApartamento(apartamentoBuscar);
+
+                    break;
+
+                case "3":
+                    Console.WriteLine("Apartamentos disponibles del hotel:");
+                    controladoraApartamento.ListarApartamentosDisponibles();
+
+                    break;
+
+                case "4":
+                    Console.WriteLine("Ingrese el numero del apartamento que desea modificar: ");
+                    int numApartamento = int.Parse(Console.ReadLine());
+                    Apartamento apartamento = controladoraApartamento.BuscarApartamento(numApartamento);
+                    if (apartamento != null)
+                    {
+                        controladoraApartamento.MostrarApartamento(numApartamento);
+                        Console.WriteLine("Ingrese la opcion del Apartamento que desea modificar: ");
+                        Console.WriteLine("(1) Ubicacion");
+                        Console.WriteLine("(2) Numero");
+                        Console.WriteLine("(3) Cantidad de habitaciones");
+                        Console.WriteLine("(4) Ubicacion, numero y cantidad de habitaciones");
+                        string InputModificar = Console.ReadLine() ?? string.Empty;
+
+                        if (InputModificar == "1")
+                        {
+                            Console.WriteLine("Ingrese la nueva ubicacion del apartamento: ");
+                            string nuevaUbicacion = Console.ReadLine() ?? string.Empty;
+                            apartamento.Ubicacion = nuevaUbicacion;
+                            controladoraApartamento.ModificarApartamento(apartamento);
+                        }
+                        else if (InputModificar == "2")
+                        {
+                            Console.WriteLine("Ingrese el nuevo numero del Apartamento: ");
+                            int nuevoNumero = int.Parse(Console.ReadLine());
+                            apartamento.Numero = nuevoNumero;
+                            controladoraApartamento.ModificarApartamento(apartamento);
+                        }
+                        else if (InputModificar == "3")
+                        {
+                            Console.WriteLine("Ingrese la nueva cantidad de habitaciones del apartamento");
+                            int nuevaCantidadDeHab = int.Parse(Console.ReadLine());
+                            apartamento.CantHabitaciones = nuevaCantidadDeHab;
+                            controladoraApartamento.ModificarApartamento(apartamento);
+                        }
+                        else if (InputModificar == "4")
+                        {
+                            Console.WriteLine("Ingrese la nueva ubicacion del apartamento: ");
+                            string nuevaUbicacion = Console.ReadLine() ?? string.Empty;
+                            apartamento.Ubicacion = nuevaUbicacion;
+
+                            Console.WriteLine("Ingrese el nuevo numero del Apartamento: ");
+                            int nuevoNumero = int.Parse(Console.ReadLine());
+                            apartamento.Numero = nuevoNumero;
+
+                            Console.WriteLine("Ingrese la nueva cantidad de habitaciones del apartamento");
+                            int nuevaCantidadDeHab = int.Parse(Console.ReadLine());
+                            apartamento.CantHabitaciones = nuevaCantidadDeHab;
+
+                            controladoraApartamento.ModificarApartamento(apartamento);
+                        }
+                        else if (InputModificar == "5")
+                        {
+                            MostrarMenu();
+                        }
+                    }
+                    break;
+
+                default:
+                    Console.WriteLine("La opcion ingresada no es valida");
+                    Console.WriteLine(" ");
+                    MostrarMenuApartamento();   
+                    break;
+                 
+            }
+
+        }
+
+        public void MostrarMenuReservas(ControladoraApartamentos controladoraApartamentos, ControladoraReserva controladoraReserva, ControladoraHuspedes controladoraHuspedes)
+        {
+            string inputReservas = string.Empty;
+            Console.WriteLine("Controladora de reservas");
+            Console.WriteLine("(1) Agregar reserva");
+            Console.WriteLine("(2) Cancelar reserva");
+            Console.WriteLine("(3) VOLVER AL MENU PRINCIPAL");
+
+            inputReservas = Console.ReadLine() ?? string.Empty;
+
+            switch (inputReservas)
+            {
+                case "1":
+                    Console.WriteLine("Ingrese los siguientes datos para iniciar la reserva:");
+
+                    Console.WriteLine("ID del apartamento:");
+                    int idApartamento = int.Parse(Console.ReadLine() ?? string.Empty);
+                    Apartamento? apartamento = controladoraApartamentos.BuscarApartamento(idApartamento);
+                    if (apartamento == null)
+                    {
+                        Console.WriteLine("Apartamento no encontrado."); //Hay que hacer que lo vuelva a pedir cuando no lo encuente
+                        return;
+                    }
+
+                    Console.WriteLine("Cédula del huésped:");
+                    int cedulaHuesped = int.Parse(Console.ReadLine() ?? string.Empty);
+                    Huesped? huesped = controladoraHuspedes.BuscarHuespedPorCi(cedulaHuesped);
+                    if (huesped == null)
+                    {
+                        Console.WriteLine("Huésped no encontrado."); //aca lo mismo
+                        return;
+                    }
+
+
+                    Console.WriteLine("Fecha de ingreso (formato: DD/MM/AAAA):");
+                    DateTime fechaIngreso = DateTime.Parse(Console.ReadLine() ?? string.Empty);
+
+                    Console.WriteLine("Fecha de egreso (formato: DD/MM/AAAA):");
+                    DateTime fechaEgreso = DateTime.Parse(Console.ReadLine() ?? string.Empty);
+
+
+                    Console.WriteLine("Cantidad de valijas:");
+                    int cantValijas = int.Parse(Console.ReadLine() ?? string.Empty);
+
+
+                    Console.WriteLine("Forma de ingreso (sumarino/helicoptero)");
+                    string formaDeIngreso = Console.ReadLine() ?? string.Empty;
+
+
+                    Reserva nuevaReserva = new Reserva(apartamento, huesped, fechaIngreso, fechaEgreso, cantValijas, formaDeIngreso);
+
+
+                    controladoraReserva.AniadirReserva(nuevaReserva);
+                break;
+
+                case "2":
+                    Console.WriteLine("Ingrese la cedula del huesped para cancelar su reserva:");
+                    int cedula = int.Parse(Console.ReadLine() ?? string.Empty);
+
+                    List<Reserva> listaDeReservas = controladoraReserva.BuscarReservasPorHuesped(cedula);
+                    controladoraReserva.MostrarReservasPorHuesped(listaDeReservas);
+
+                    Console.WriteLine("Ingrese el numero de ID de la reserva que desea cancelar");
+                    int id = int.Parse(Console.ReadLine());
+
+
+                    controladoraReserva.CancelarReserva(id);
+
+                break;
+
+                case "3":
+                    MostrarMenu();
+                    break;
+
+                default: Console.WriteLine("La opcion ingresada no es valida");
+                    Console.WriteLine(" ");
+                    MostrarMenuReservas(controladoraApartamentos,controladoraReserva, controladoraHuspedes);
+                    break;
+            }
+        }
+
+
+        public void MostrarMenuEstadisticas(ControladoraReserva controladoraReserva, ControladoraApartamentos controladoraApartamentos, ControladoraHuspedes controladoraHuspedes)
+        {
+            Estadistica controladoraEstadistica = new Estadistica();
+            string inputEstadiaticas = string.Empty;
+            Console.WriteLine("Controladora de estadisticas");
+            Console.WriteLine("(1) ListarApartamentosDisponibles");
+            Console.WriteLine("(2) Mostrar reservas del dia ");
+            Console.WriteLine("(3) Agregar reservas al historial");
+            Console.WriteLine("(4) Mostrar historial de reservas");
+            Console.WriteLine("(5) Mostrar los diez apartamentos mas reservados");
+            Console.WriteLine("(6) Volver al menu principal");
+
+            inputEstadiaticas = Console.ReadLine() ?? string.Empty;
+
+            switch (inputEstadiaticas)
+            {
+                case "1":
+                    break;
+                case "2":
+                    Console.WriteLine("Los apartamentos disponibles son: ");
+                    controladoraApartamentos.ListarApartamentosDisponibles();
+
+                    break
+                        ;
+                case "3":
+                    Console.WriteLine("Ingrese la fecha del dia de hoy para ver las reservas: (formato: DD/MM/AAAA)");
+                    DateTime fechaBusqueda = DateTime.Parse(Console.ReadLine() ?? string.Empty);
+                    controladoraEstadistica.MostrarReservasDelDia(fechaBusqueda, controladoraReserva.ListaReseravas);
+
+                    break;
+
+                case "4":
+
+                    Console.WriteLine("Ingrese la cedula del huesped al que desea buscar sus reservas: ");
+                    int cedula1 = int.Parse(Console.ReadLine());
+                    Huesped huespedBuscado = controladoraHuspedes.BuscarHuespedPorCi(cedula1);
+
+                    if (huespedBuscado != null)
+                    {
+
+
+                        List<Reserva> listaDeReservasPorHuesped = controladoraReserva.BuscarReservasPorHuesped(cedula1);
+
+                        if (listaDeReservasPorHuesped.Count > 0)
+                        {
+                            Console.WriteLine("Se encontraron las siguientes reservas del huesped con cedula: " + cedula1);
+                            controladoraReserva.MostrarReservasPorHuesped(listaDeReservasPorHuesped);
+                        }
+                        else
+                        {
+                            Console.WriteLine("No se encontraron reservas del huesped con cedula: " + cedula1);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("No se encontro el huesped con cedula:" + cedula1);
+                    }
+
+
+                    break;
+
+                case "5":
+                    Console.WriteLine("Los diez apartamento con mas reservas son:");
+                   controladoraEstadistica.MostrarDiezAptosMasRerservados(controladoraApartamentos.ListaApartamentos);
+
+                    break;
+
+                case "6":
+                    Console.WriteLine("Lista de huespedes: ");
+                    controladoraEstadistica.ListarHuespedesPorAlfabeto(controladoraHuspedes.HuespedesActivos);
+                    break;
+
+                case "7":
+                    MostrarMenu();
+                    break;
+
+                default:
+                    Console.WriteLine("La opcion ingresada no es valida");
+                    Console.WriteLine(" ");
+                    MostrarMenuEstadisticas(controladoraReserva, controladoraApartamentos, controladoraHuspedes);
+                    break;
+            }
+
         }
 
     }
