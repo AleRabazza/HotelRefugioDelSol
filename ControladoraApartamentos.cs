@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelRefugioDelSol
 {
-    internal class ControladoraApartamentos
+    public class ControladoraApartamentos
     {
         public List<Apartamento> ListaApartamentos {  get; set; }
         public ControladoraApartamentos()

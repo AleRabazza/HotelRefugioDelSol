@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HotelRefugioDelSol
 {
-    internal class Estadistica
+    public class Estadistica
     {
         public void ListarApartamentosDisponibles(List<Apartamento> ListaApartamentos)
         {

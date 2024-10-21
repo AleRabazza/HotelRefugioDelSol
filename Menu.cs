@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HotelRefugioDelSol
 {
-    internal class Menu
+    public class Menu
     {
         public void MostrarMenu()
         {
