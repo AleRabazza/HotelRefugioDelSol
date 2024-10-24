@@ -50,10 +50,46 @@ namespace HotelRefugioDelSol
             }
             return null;
         }
-        public Huesped ModificarHuesped(Huesped huesped)
+        public void ModificarHuesped(Huesped huesped, string input)
         {
-            Huesped huespedModificado = huesped; 
-            return huespedModificado;
+            if (input == "1")
+            {
+                Console.WriteLine("Ingrese el nuevo nombre del huesped: ");
+                string nuevoNombre = Console.ReadLine() ?? string.Empty;
+                huesped.Nombre = nuevoNombre;
+                Console.Clear();
+                Console.WriteLine("Modificado correctamente");
+                Console.WriteLine("");
+
+            }
+            else if (input == "2")
+            {
+                Console.WriteLine("Ingrese la nueva cedula del huesped: ");
+                int nuevaCedula = int.Parse(Console.ReadLine() ?? string.Empty);
+                huesped.Ci = nuevaCedula;
+                Console.Clear();
+                Console.WriteLine("Modificado correctamente");
+                Console.WriteLine("");
+
+
+            }
+            else if (input == "3")
+            {
+                Console.WriteLine("Ingrese el nuevo nombre del huesped: ");
+                string nuevoNombre = Console.ReadLine() ?? string.Empty;
+                huesped.Nombre = nuevoNombre;
+
+                Console.WriteLine("Ingrese la nueva cedula del huesped: ");
+                int nuevaCedula = int.Parse(Console.ReadLine() ?? string.Empty);
+                huesped.Ci = nuevaCedula;
+                Console.Clear();
+                Console.WriteLine("Modificado correctamente");
+                Console.WriteLine("");
+            }
+            else
+            {
+                Console.WriteLine("La opcion ingresada no es correcta.");
+            }
         }
 
 

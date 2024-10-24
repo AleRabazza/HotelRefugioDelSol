@@ -30,21 +30,44 @@ namespace HotelRefugioDelSol
 
         } 
 
-        public void ModificarApartamento (Apartamento apartamento)
+        public void ModificarApartamento (Apartamento apartamento, string input)
         {
-            Apartamento? aptoExistente = BuscarApartamento(apartamento.Numero);
-            if (aptoExistente != null)
+            if (input == "1")
             {
-                aptoExistente.Ubicacion = apartamento.Ubicacion;
-                aptoExistente.CantHabitaciones = apartamento.CantHabitaciones;
-                aptoExistente.Estado = apartamento.Estado;
-                aptoExistente.Precio = apartamento.Precio;
-                aptoExistente.CantVecesReservado = apartamento.CantVecesReservado;
-                Console.WriteLine($" El Apartamento número {apartamento.Numero} fue modificado con éxito.");
+                Console.WriteLine("Ingrese la nueva ubicacion del apartamentos");
+                string nuevaUbicacion = Console.ReadLine() ?? string.Empty;
+                apartamento.Ubicacion = nuevaUbicacion;
             }
-            else
+            else if (input == "2")
             {
-                Console.WriteLine($" El Apartamento número {apartamento.Numero} no se pudo encontrar.");
+                Console.WriteLine("Ingrese el nuevo numero del Apartamento");
+                int nuevoNumero = int.Parse(Console.ReadLine() ?? string.Empty);
+                apartamento.Numero = nuevoNumero;
+            }
+            else if (input == "3")
+            {
+                Console.WriteLine("Ingrese la nueva cantidad de habitaciones del apartamento");
+                int nuevaCantidadDeHab = int.Parse(Console.ReadLine() ?? string.Empty);
+                apartamento.CantHabitaciones = nuevaCantidadDeHab;
+            }
+            else if (input == "4")
+            {
+                Console.WriteLine("Ingrese la nueva ubicacion del apartamento: ");
+                string nuevaUbicacion = Console.ReadLine() ?? string.Empty;
+                apartamento.Ubicacion = nuevaUbicacion;
+
+                Console.WriteLine("Ingrese el nuevo numero del Apartamento: ");
+                int nuevoNumero = int.Parse(Console.ReadLine() ?? string.Empty);
+                apartamento.Numero = nuevoNumero;
+
+                Console.WriteLine("Ingrese la nueva cantidad de habitaciones del apartamento");
+                int nuevaCantidadDeHab = int.Parse(Console.ReadLine() ?? string.Empty);
+                apartamento.CantHabitaciones = nuevaCantidadDeHab;
+
+            }
+            else 
+            {
+                Console.WriteLine("La opcion ingresada no es correcta");
             }
         }
 
