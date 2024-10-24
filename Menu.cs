@@ -157,19 +157,19 @@ namespace HotelRefugioDelSol
                     {
                         Console.WriteLine("Ingrese la ubicación del apartamento:");
                         ubicacion = Console.ReadLine() ?? string.Empty;
-                    } while (ubicacion != string.Empty);
+                    } while (string.IsNullOrEmpty(ubicacion) || ubicacion != "noreste" || ubicacion != "sureste" || ubicacion != "noroeste" || ubicacion != "suroeste");
 
                     do
                     {
                         Console.WriteLine("Ingrese el número del apartamento:");
                         numero = int.Parse(Console.ReadLine() ?? string.Empty);
-                    } while (numero != 0 || numero != int.Parse(string.Empty));
+                    } while (numero == 0);
 
                     do {
                         Console.WriteLine("Ingrese la cantidad de habitaciones:");
                         cantHabitaciones = int.Parse(Console.ReadLine() ?? string.Empty);
                         
-                    } while (cantHabitaciones != 0 || cantHabitaciones != int.Parse(string.Empty));
+                    } while (cantHabitaciones == 0 );
 
                     Apartamento nuevoApartamento = new Apartamento(ubicacion, numero, cantHabitaciones);
                     controladoraApartamento.AgregarApartamento(nuevoApartamento);
