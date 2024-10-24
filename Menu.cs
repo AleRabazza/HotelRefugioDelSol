@@ -152,12 +152,25 @@ namespace HotelRefugioDelSol
                     string ubicacion = string.Empty;
                     int numero = 0;
                     int cantHabitaciones = 0;
-
+                    bool estaVacio = true;
+                    bool esCorrecto = false;
                     do
                     {
                         Console.WriteLine("Ingrese la ubicación del apartamento:");
                         ubicacion = Console.ReadLine() ?? string.Empty;
-                    } while (string.IsNullOrEmpty(ubicacion) || ubicacion != "noreste" || ubicacion != "sureste" || ubicacion != "noroeste" || ubicacion != "suroeste");
+                        if (string.IsNullOrEmpty(ubicacion))
+                        {
+                            estaVacio = true;
+                        }
+                        else
+                        {
+                            estaVacio = false;
+                            if (ubicacion == "noreste" || ubicacion == "sureste" || ubicacion == "noroeste" || ubicacion == "suroeste")
+                            {
+                                esCorrecto = true;
+                            }
+                        }
+                    } while (estaVacio || !esCorrecto );
 
                     do
                     {
