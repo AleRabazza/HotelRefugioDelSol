@@ -26,6 +26,8 @@ namespace HotelRefugioDelSol
 
         public float PrecioRes { get; set; }
 
+        public bool EstadoReserva {  get; set; } 
+
         public Reserva(Apartamento apartamento, Huesped huesped, DateTime fechaing, DateTime fechaEgreso, int cantValijas, string formaDeIngreso)
         {
             IdReserva = NuevoId();
@@ -36,6 +38,7 @@ namespace HotelRefugioDelSol
             FormaDeIngreso = formaDeIngreso;
             CantValijas = cantValijas;
             PrecioRes = GenerarPrecioRes(apartamento, fechaEgreso, fechaing);
+            EstadoReserva = true;
         }
 
         private int NuevoId()
