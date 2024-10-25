@@ -197,6 +197,20 @@ namespace HotelRefugioDelSol
                 Console.WriteLine("Apartamento no encontrado");
             }
         }
+
+        public bool EstaEnLista(List<Apartamento> lista, Apartamento apto)
+        {
+            int indice;
+            indice = lista.FindIndex(a => a.Numero == apto.Numero);                
+            if (indice == -1)
+            {
+                return false;
+            } 
+            else 
+            {
+                return true;
+            }
+        }
     }
      
 }

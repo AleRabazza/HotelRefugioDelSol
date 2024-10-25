@@ -36,7 +36,7 @@ namespace HotelRefugioDelSol
             Reserva? reserva = BuscarReservaPorId(id);
             if (reserva != null)
             {
-                ListaReservas.Remove(reserva);
+                reserva.EstadoReserva = false;
                 return true;
             }
             else
@@ -84,6 +84,31 @@ namespace HotelRefugioDelSol
                 Console.WriteLine("El huesped no tiene reservas");
             }
 
+        }
+
+        public List<Apartamento> ApartamentosDisponiblesEnFecha(List<Apartamento> aptos, List<Reserva> reservas, DateTime fechaIngreso, DateTime fechaEgreso, ControladoraApartamentos apartamentos)
+        {
+            List<Apartamento> apartamentosDisponibles = new List<Apartamento>();
+            foreach (Reserva reserva in reservas)
+            {
+                if (reserva.FechaEgreso < fechaIngreso || reserva.FechaIngreso > fechaEgreso)
+                {
+                    if (!apartamentos.EstaEnLista(apartamentosDisponibles, reserva.ApartamentoRes) ) 
+                    {
+                        apartamentosDisponibles.Add(reserva.ApartamentoRes);
+                    }
+                }
+                else
+                {
+                    foreach (Apartamento apto in apartamentosDisponibles)
+                    {
+                        if (apartamentos.EstaEnLista(apartamentosDisponibles, reserva.ApartamentoRes))
+                        {
+                            apartamentosDisponibles.Remove(reserva.ApartamentoRes);
+                        }
+                    }
+                }
+            }
         }
     }
 }

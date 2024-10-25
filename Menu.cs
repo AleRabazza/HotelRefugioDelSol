@@ -314,29 +314,7 @@ namespace HotelRefugioDelSol
             {
                 case "1":
                     Console.WriteLine("Ingrese los siguientes datos para iniciar la reserva:");
-                    estadisticas.ListarApartamentosDisponibles(controladoraApartamentos.ListaApartamentos);
-                    Console.WriteLine(" ");
-                    Console.WriteLine("ID del apartamento:");
-                    int idApartamento = int.Parse(Console.ReadLine() ?? string.Empty);
-                    Apartamento? apartamento = controladoraApartamentos.BuscarApartamento(idApartamento);
-                    if (apartamento == null)
-                    {
-                            Console.WriteLine("Apartamento no encontrado.");
-                            Console.WriteLine(" ");                         
-                            return;
-                    }
-                    estadisticas.ListarHuespedesPorAlfabeto(controladoraHuspedes.ListaHuespedes);
-                    Console.WriteLine("Cédula del huésped:");
-                    int cedulaHuesped = int.Parse(Console.ReadLine() ?? string.Empty);
-                    Huesped? huesped = controladoraHuspedes.BuscarHuespedPorCi(cedulaHuesped);
-                    if (huesped == null)
-                    {
-                        Console.WriteLine("Huésped no encontrado.");
-                        Console.WriteLine(" ");//aca lo mismo
-                        return;
-                    }
-
-
+                    Console.WriteLine("");
                     Console.WriteLine("Fecha de ingreso (formato: DD/MM/AAAA):");
                     DateTime fechaIngreso = DateTime.Parse(Console.ReadLine() ?? string.Empty);
 
@@ -353,6 +331,29 @@ namespace HotelRefugioDelSol
 
                     } while ((fechaEgreso - fechaIngreso).Days > 30);
 
+                    estadisticas.ListarApartamentosDisponibles(controladoraApartamentos.ListaApartamentos);
+                    Console.WriteLine(" ");
+                    Console.WriteLine("ID del apartamento:");
+                    int idApartamento = int.Parse(Console.ReadLine() ?? string.Empty);
+                    Apartamento? apartamento = controladoraApartamentos.BuscarApartamento(idApartamento);
+                    if (apartamento == null)
+                    {
+                            Console.WriteLine("Apartamento no encontrado.");
+                            Console.WriteLine(" ");                         
+                            return;
+                    }
+                    apartamento.CantVecesReservado += 1;
+                    estadisticas.ListarHuespedesPorAlfabeto(controladoraHuspedes.ListaHuespedes);
+                    Console.WriteLine("Cédula del huésped:");
+                    int cedulaHuesped = int.Parse(Console.ReadLine() ?? string.Empty);
+                    Huesped? huesped = controladoraHuspedes.BuscarHuespedPorCi(cedulaHuesped);
+                    if (huesped == null)
+                    {
+                        Console.WriteLine("Huésped no encontrado.");
+                        Console.WriteLine(" ");
+                        return;
+                    }
+                                                            
                     int cantValijas;
                     do
                     {
@@ -402,10 +403,8 @@ namespace HotelRefugioDelSol
                         bool resultado = controladoraReserva.CancelarReserva(id);
                         if (resultado)
                         {
-                            Console.WriteLine("La reserva fue eliminada correctamente.");
+                            Console.WriteLine("La reserva fue cancelada correctamente.");
                             Console.WriteLine(" ");
-                            // Reserva? reserva = controladoraReserva.BuscarReservaPorId(id);
-                            //reserva.ApartamentoRes.Estado = false;
                         }
                         else
                         {

@@ -27,7 +27,6 @@ namespace HotelRefugioDelSol
             Ubicacion = ubicacion;
             Numero = numero;
             CantHabitaciones = CantHabit;
-            Estado = false;
             Precio = GenerarPrecio(this.Ubicacion);
             CantVecesReservado = 0;
         }
