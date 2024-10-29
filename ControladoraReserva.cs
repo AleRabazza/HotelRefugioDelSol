@@ -109,6 +109,7 @@ namespace HotelRefugioDelSol
                     }
                 }
             }
+            return apartamentosDisponibles;
         }
     }
 }

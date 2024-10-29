@@ -331,6 +331,9 @@ namespace HotelRefugioDelSol
 
                     } while ((fechaEgreso - fechaIngreso).Days > 30);
 
+                    List<Apartamento> aptosDisp = controladoraReserva.ApartamentosDisponiblesEnFecha(controladoraApartamentos.ListaApartamentos, controladoraReserva.ListaReservas, fechaIngreso, fechaEgreso, controladoraApartamentos);
+                    estadisticas.ListarApartamentosDisponibles(aptosDisp);
+
                     estadisticas.ListarApartamentosDisponibles(controladoraApartamentos.ListaApartamentos);
                     Console.WriteLine(" ");
                     Console.WriteLine("ID del apartamento:");
