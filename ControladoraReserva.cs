@@ -86,30 +86,21 @@ namespace HotelRefugioDelSol
 
         }
 
-        public List<Apartamento> ApartamentosDisponiblesEnFecha(List<Apartamento> aptos, List<Reserva> reservas, DateTime fechaIngreso, DateTime fechaEgreso, ControladoraApartamentos apartamentos)
+        public List<Apartamento> ApartamentosDisponiblesEnFecha(List<Reserva> reservas, DateTime fechaIngreso, DateTime fechaEgreso, ControladoraApartamentos apartamentos)
         {
             List<Apartamento> apartamentosDisponibles = new List<Apartamento>();
+            apartamentosDisponibles = apartamentos.ListaApartamentos;
             foreach (Reserva reserva in reservas)
             {
-                if (reserva.FechaEgreso < fechaIngreso || reserva.FechaIngreso > fechaEgreso)
+                if ((reserva.FechaIngreso > fechaIngreso && reserva.FechaEgreso < fechaEgreso) || (reserva.FechaEgreso > fechaIngreso && reserva.FechaIngreso < fechaIngreso) || (reserva.FechaIngreso < fechaIngreso && reserva.FechaEgreso > fechaEgreso))
                 {
-                    if (!apartamentos.EstaEnLista(apartamentosDisponibles, reserva.ApartamentoRes) ) 
+                    if (apartamentos.EstaEnLista(apartamentosDisponibles, reserva.ApartamentoRes) ) 
                     {
-                        apartamentosDisponibles.Add(reserva.ApartamentoRes);
-                    }
-                }
-                else
-                {
-                    foreach (Apartamento apto in apartamentosDisponibles)
-                    {
-                        if (apartamentos.EstaEnLista(apartamentosDisponibles, reserva.ApartamentoRes))
-                        {
-                            apartamentosDisponibles.Remove(reserva.ApartamentoRes);
-                        }
+                        apartamentosDisponibles.Remove(reserva.ApartamentoRes);
                     }
                 }
             }
             return apartamentosDisponibles;
-        }
+            }
     }
 }

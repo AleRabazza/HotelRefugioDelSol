@@ -165,7 +165,6 @@ namespace HotelRefugioDelSol
                 case "1":
                     
                     string ubicacion = string.Empty;
-                    int numero = 0;
                     int cantHabitaciones = 0;
 
                     Console.WriteLine("Ingrese la ubicación del apartamento: (noroeste|suroeste|noreste|sureste)");
@@ -179,19 +178,6 @@ namespace HotelRefugioDelSol
                             ubicacion = Console.ReadLine() ?? string.Empty;
                         } while (ubicacion != "noroeste" && ubicacion != "suroeste" && ubicacion != "noreste" && ubicacion != "sureste");
                     }
-                    // Console.WriteLine("Ingrese el número del apartamento:");
-                    // numero = int.Parse(Console.ReadLine() ?? string.Empty);
-                    //if (numero <= 0 || controladoraApartamento.BuscarApartamento(numero) != null)
-                    //  {
-                    //do
-                    //{
-                    //Console.WriteLine("El numero del apartamento tiene que ser mayor a 0 o ya existe un apartamento con ese numero. ");
-                    //Console.WriteLine("Ingrese nuevamente el número del apartamento:");
-                    // Console.WriteLine("");
-
-                    // numero = int.Parse(Console.ReadLine() ?? string.Empty);
-                    //} while (numero <= 0);
-                    // }
                     Console.WriteLine("Ingrese la cantidad de habitaciones: (3 o 4)");
                     cantHabitaciones = int.Parse(Console.ReadLine() ?? string.Empty);
                     if (cantHabitaciones != 3 && cantHabitaciones != 4)
@@ -331,10 +317,12 @@ namespace HotelRefugioDelSol
 
                     } while ((fechaEgreso - fechaIngreso).Days > 30);
 
-                    List<Apartamento> aptosDisp = controladoraReserva.ApartamentosDisponiblesEnFecha(controladoraApartamentos.ListaApartamentos, controladoraReserva.ListaReservas, fechaIngreso, fechaEgreso, controladoraApartamentos);
+                    List<Apartamento> aptosDisp = controladoraReserva.ApartamentosDisponiblesEnFecha(controladoraReserva.ListaReservas, fechaIngreso, fechaEgreso, controladoraApartamentos);
                     estadisticas.ListarApartamentosDisponibles(aptosDisp);
-
-                    estadisticas.ListarApartamentosDisponibles(controladoraApartamentos.ListaApartamentos);
+                    if (aptosDisp.Count == 0)
+                    {
+                        break;
+                    }
                     Console.WriteLine(" ");
                     Console.WriteLine("ID del apartamento:");
                     int idApartamento = int.Parse(Console.ReadLine() ?? string.Empty);
