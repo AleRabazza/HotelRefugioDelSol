@@ -48,7 +48,7 @@ namespace HotelRefugioDelSol
         public void MostrarReserva(Reserva reserva1)
         {
             Console.WriteLine($"Id de la reserva : {reserva1.IdReserva}");
-            Console.WriteLine($"Apartamento reservado : {reserva1.ApartamentoRes.CodApartamento}");
+            Console.WriteLine($"Apartamento reservado : {reserva1.ApartamentoRes.Numero}");
             Console.WriteLine($"Huesped : {reserva1.HuespedRes.Ci}");
             Console.WriteLine($"Fecha de Ingreso : {reserva1.FechaIngreso.Date.ToString()}");
             Console.WriteLine($"Fecha de Egreso : {reserva1.FechaEgreso.Date.ToString()}");

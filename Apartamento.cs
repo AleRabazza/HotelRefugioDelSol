@@ -9,28 +9,34 @@ namespace HotelRefugioDelSol
     public class Apartamento
     {
         public string CodApartamento { get; set; }
-        
+
         public string Ubicacion { get; set; }
 
-        public int Numero {  get; set; }
+        public int Numero { get; set; }
 
         public int CantHabitaciones { get; set; }
 
-        public bool Estado {  get; set; }
+        public bool Estado { get; set; }
         public float Precio { get; set; }
 
         public int CantVecesReservado { get; set; }
 
-        public Apartamento(string ubicacion, int numero, int CantHabit)
+        private static int contadorNumeroApartamento = 0;
+
+        public Apartamento(string ubicacion, int CantHabit)
         {
             CodApartamento = GenerarCodigoApartamento(this.Ubicacion ?? string.Empty, this.Numero);
             Ubicacion = ubicacion;
-            Numero = numero;
+            Numero = GenerarNumero();
             CantHabitaciones = CantHabit;
             Precio = GenerarPrecio(this.Ubicacion);
             CantVecesReservado = 0;
         }
-
+        private int GenerarNumero()
+        {
+            contadorNumeroApartamento++;
+            return contadorNumeroApartamento;
+        }
         public string GenerarCodigoApartamento(String ubicacion, int numero) 
         {
             return $"{ubicacion}-{numero}";

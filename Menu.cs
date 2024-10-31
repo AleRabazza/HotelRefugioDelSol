@@ -179,19 +179,19 @@ namespace HotelRefugioDelSol
                             ubicacion = Console.ReadLine() ?? string.Empty;
                         } while (ubicacion != "noroeste" && ubicacion != "suroeste" && ubicacion != "noreste" && ubicacion != "sureste");
                     }
-                    Console.WriteLine("Ingrese el número del apartamento:"); // hacer que lo genere la computadora y mostrarlo.
-                    numero = int.Parse(Console.ReadLine() ?? string.Empty);
-                    if (numero <= 0 || controladoraApartamento.BuscarApartamento(numero) != null)
-                    {
-                        do
-                        {
-                            Console.WriteLine("El numero del apartamento tiene que ser mayor a 0 o ya existe un apartamento con ese numero. ");
-                            Console.WriteLine("Ingrese nuevamente el número del apartamento:");
-                            Console.WriteLine("");
+                    // Console.WriteLine("Ingrese el número del apartamento:");
+                    // numero = int.Parse(Console.ReadLine() ?? string.Empty);
+                    //if (numero <= 0 || controladoraApartamento.BuscarApartamento(numero) != null)
+                    //  {
+                    //do
+                    //{
+                    //Console.WriteLine("El numero del apartamento tiene que ser mayor a 0 o ya existe un apartamento con ese numero. ");
+                    //Console.WriteLine("Ingrese nuevamente el número del apartamento:");
+                    // Console.WriteLine("");
 
-                            numero = int.Parse(Console.ReadLine() ?? string.Empty);
-                        } while (numero <= 0);
-                    }
+                    // numero = int.Parse(Console.ReadLine() ?? string.Empty);
+                    //} while (numero <= 0);
+                    // }
                     Console.WriteLine("Ingrese la cantidad de habitaciones: (3 o 4)");
                     cantHabitaciones = int.Parse(Console.ReadLine() ?? string.Empty);
                     if (cantHabitaciones != 3 && cantHabitaciones != 4)
@@ -205,7 +205,7 @@ namespace HotelRefugioDelSol
                         } while (cantHabitaciones != 3 && cantHabitaciones != 4);
                     }
 
-                    Apartamento nuevoApartamento = new Apartamento(ubicacion, numero, cantHabitaciones);
+                    Apartamento nuevoApartamento = new Apartamento(ubicacion, cantHabitaciones);
                     controladoraApartamento.AgregarApartamento(nuevoApartamento);
 
                     Console.Clear();
@@ -527,8 +527,8 @@ namespace HotelRefugioDelSol
             huesped.ListaHuespedes.Add(huesped1);
             huesped.ListaHuespedes.Add(huesped2);
 
-            Apartamento apto1 = new Apartamento("noroeste", 1, 3);
-            Apartamento apto2 = new Apartamento("sureste", 2, 4);
+            Apartamento apto1 = new Apartamento("noroeste", 3);
+            Apartamento apto2 = new Apartamento("sureste", 4);
             aptos.ListaApartamentos.Add(apto1);
             aptos.ListaApartamentos.Add(apto2);
         }
