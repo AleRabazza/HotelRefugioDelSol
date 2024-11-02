@@ -86,7 +86,7 @@ namespace HotelRefugioDelSol
 
         }
 
-        public List<Apartamento> ApartamentosDisponiblesEnFecha(List<Apartamento> aptos, List<Reserva> reservas, DateTime fechaIngreso, DateTime fechaEgreso, ControladoraApartamentos apartamentos)
+        public List<Apartamento> ApartamentosDisponiblesEnFecha(List<Apartamento> aptos, List<Reserva> reservas, DateTime fechaIngreso, DateTime fechaEgreso)
         {
 
             List<Apartamento> apartamentosDisponibles = new List<Apartamento>(aptos);
