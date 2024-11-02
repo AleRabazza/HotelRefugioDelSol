@@ -165,7 +165,6 @@ namespace HotelRefugioDelSol
                 case "1":
                     
                     string ubicacion = string.Empty;
-                    int numero = 0;
                     int cantHabitaciones = 0;
 
                     Console.WriteLine("Ingrese la ubicación del apartamento: (noroeste|suroeste|noreste|sureste)");
