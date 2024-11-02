@@ -10,12 +10,10 @@ namespace HotelRefugioDelSol
     {
         public void ListarApartamentosDisponibles(List<Apartamento> ListaApartamentos)
         {
-            List<Apartamento> apartamentosDisponibles = ListaApartamentos.FindAll(apto => apto.Estado == false);
-
-            if (apartamentosDisponibles.Count > 0)
+            if (ListaApartamentos.Count > 0)
             {
                 Console.WriteLine("Apartamentos disponibles:");
-                foreach (Apartamento apto in apartamentosDisponibles)
+                foreach (Apartamento apto in ListaApartamentos)
                 {
                     Console.WriteLine($"Número: {apto.Numero}, Ubicación: {apto.Ubicacion}, Habitaciones: {apto.CantHabitaciones}, Precio: {apto.Precio} USD");
                 }
@@ -24,6 +22,7 @@ namespace HotelRefugioDelSol
             {
                 Console.WriteLine("No hay apartamentos disponibles.");
             }
+          
         }
 
         public void MostrarReservasDelDia(DateTime dia, List<Reserva> reservas)

@@ -179,19 +179,6 @@ namespace HotelRefugioDelSol
                             ubicacion = Console.ReadLine() ?? string.Empty;
                         } while (ubicacion != "noroeste" && ubicacion != "suroeste" && ubicacion != "noreste" && ubicacion != "sureste");
                     }
-                    // Console.WriteLine("Ingrese el número del apartamento:");
-                    // numero = int.Parse(Console.ReadLine() ?? string.Empty);
-                    //if (numero <= 0 || controladoraApartamento.BuscarApartamento(numero) != null)
-                    //  {
-                    //do
-                    //{
-                    //Console.WriteLine("El numero del apartamento tiene que ser mayor a 0 o ya existe un apartamento con ese numero. ");
-                    //Console.WriteLine("Ingrese nuevamente el número del apartamento:");
-                    // Console.WriteLine("");
-
-                    // numero = int.Parse(Console.ReadLine() ?? string.Empty);
-                    //} while (numero <= 0);
-                    // }
                     Console.WriteLine("Ingrese la cantidad de habitaciones: (3 o 4)");
                     cantHabitaciones = int.Parse(Console.ReadLine() ?? string.Empty);
                     if (cantHabitaciones != 3 && cantHabitaciones != 4)
@@ -233,7 +220,6 @@ namespace HotelRefugioDelSol
                     break;
 
                 case "4":
-                    Console.WriteLine("===== Apartamentos disponibles del hotel =====");
                     controladoraApartamento.ListarApartamentosDisponibles();
                     Console.WriteLine("");
                     Console.WriteLine("==============================================");
@@ -331,63 +317,70 @@ namespace HotelRefugioDelSol
 
                     } while ((fechaEgreso - fechaIngreso).Days > 30);
 
-                    List<Apartamento> aptosDisp = controladoraReserva.ApartamentosDisponiblesEnFecha(controladoraApartamentos.ListaApartamentos, controladoraReserva.ListaReservas, fechaIngreso, fechaEgreso, controladoraApartamentos);
-                    estadisticas.ListarApartamentosDisponibles(aptosDisp);
+                    List<Apartamento> aptosDisp = controladoraReserva.ApartamentosDisponiblesEnFecha(controladoraApartamentos.ListaApartamentos, controladoraReserva.ListaReservas, fechaIngreso, fechaEgreso);
 
-                    estadisticas.ListarApartamentosDisponibles(controladoraApartamentos.ListaApartamentos);
-                    Console.WriteLine(" ");
-                    Console.WriteLine("ID del apartamento:");
-                    int idApartamento = int.Parse(Console.ReadLine() ?? string.Empty);
-                    Apartamento? apartamento = controladoraApartamentos.BuscarApartamento(idApartamento);
-                    if (apartamento == null)
+                    if (aptosDisp.Count > 0)
                     {
-                            Console.WriteLine("Apartamento no encontrado.");
-                            Console.WriteLine(" ");                         
-                            return;
-                    }
-                    apartamento.CantVecesReservado += 1;
-                    estadisticas.ListarHuespedesPorAlfabeto(controladoraHuspedes.ListaHuespedes);
-                    Console.WriteLine("Cédula del huésped:");
-                    int cedulaHuesped = int.Parse(Console.ReadLine() ?? string.Empty);
-                    Huesped? huesped = controladoraHuspedes.BuscarHuespedPorCi(cedulaHuesped);
-                    if (huesped == null)
-                    {
-                        Console.WriteLine("Huésped no encontrado.");
+                        estadisticas.ListarApartamentosDisponibles(aptosDisp);
                         Console.WriteLine(" ");
-                        return;
-                    }
-                                                            
-                    int cantValijas;
-                    do
-                    {
-                        Console.WriteLine("Cantidad de valijas: (No puede ingresar con mas de 5 valijas");
-                        cantValijas = int.Parse(Console.ReadLine() ?? string.Empty);
-
-                    } while (cantValijas > 5);
-
-
-
-                    string formaDeIngreso;
-                    do
-                    {
-                        Console.WriteLine("Forma de ingreso (submarino/helicoptero):");
-                        formaDeIngreso = Console.ReadLine() ?? string.Empty;
-
-                        if (formaDeIngreso != "submarino" && formaDeIngreso != "helicoptero")
+                        Console.WriteLine("ID del apartamento:");
+                        int idApartamento = int.Parse(Console.ReadLine() ?? string.Empty);
+                        Apartamento? apartamento = controladoraApartamentos.BuscarApartamento(idApartamento);
+                        if (apartamento == null)
                         {
-                            Console.WriteLine("Por favor, ingrese una forma de ingreso válida (submarino o helicoptero).");
+                            Console.WriteLine("Apartamento no encontrado.");
+                            Console.WriteLine(" ");
+                            return;
+                        }
+                        apartamento.CantVecesReservado += 1;
+                        estadisticas.ListarHuespedesPorAlfabeto(controladoraHuspedes.ListaHuespedes);
+                        Console.WriteLine("Cédula del huésped:");
+                        int cedulaHuesped = int.Parse(Console.ReadLine() ?? string.Empty);
+                        Huesped? huesped = controladoraHuspedes.BuscarHuespedPorCi(cedulaHuesped);
+                        if (huesped == null)
+                        {
+                            Console.WriteLine("Huésped no encontrado.");
+                            Console.WriteLine(" ");
+                            return;
                         }
 
-                    } while (formaDeIngreso != "submarino" && formaDeIngreso != "helicoptero");
+                        int cantValijas;
+                        do
+                        {
+                            Console.WriteLine("Cantidad de valijas: (No puede ingresar con mas de 5 valijas");
+                            cantValijas = int.Parse(Console.ReadLine() ?? string.Empty);
+
+                        } while (cantValijas > 5);
 
 
-                    Reserva nuevaReserva = new Reserva(apartamento, huesped, fechaIngreso, fechaEgreso, cantValijas, formaDeIngreso);
+
+                        string formaDeIngreso;
+                        do
+                        {
+                            Console.WriteLine("Forma de ingreso ( (1)- submarino || (2)- helicoptero ):");
+                            formaDeIngreso = Console.ReadLine() ?? string.Empty;
+
+                            if (formaDeIngreso != "1" && formaDeIngreso != "2")
+                            {
+                                Console.WriteLine("Por favor, ingrese una forma de ingreso válida  (1)- submarino o (2)- helicoptero.");
+                            }
+
+                        } while (formaDeIngreso != "1" && formaDeIngreso != "2");
 
 
-                    controladoraReserva.AniadirReserva(nuevaReserva);
-                    Console.WriteLine(" ");
-                    apartamento.CantVecesReservado = apartamento.CantVecesReservado + 1;
-                    apartamento.Estado = true;
+                        Reserva nuevaReserva = new Reserva(apartamento, huesped, fechaIngreso, fechaEgreso, cantValijas, formaDeIngreso);
+
+
+                        controladoraReserva.AniadirReserva(nuevaReserva);
+                        Console.WriteLine(" ");
+                        apartamento.CantVecesReservado = apartamento.CantVecesReservado + 1;
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("No hay apartamentos disponibles entre estas fechas.");
+                    }
+              
                     break;
 
                 case "2":
