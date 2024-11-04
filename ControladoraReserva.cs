@@ -55,6 +55,15 @@ namespace HotelRefugioDelSol
             Console.WriteLine($"Fecha de Egreso : {reserva1.FechaEgreso.Date.ToString()}");
             Console.WriteLine($"Cantidad de valijas : {reserva1.CantValijas}");
             Console.WriteLine($"Precio reserva : {reserva1.PrecioRes}");
+            if (reserva1.FormaDeIngreso == "1")
+            {
+                Console.WriteLine("Forma de ingreso: submarino");
+            }
+            else
+            {
+                Console.WriteLine("Forma de ingreso: helicoptero");
+            }
+
             Console.WriteLine("");
             Console.WriteLine("");
         }

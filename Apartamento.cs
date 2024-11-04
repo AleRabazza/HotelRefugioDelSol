@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace HotelRefugioDelSol
 {
     public class Apartamento
-    { 
+    {   
         public string Ubicacion { get; set; }
 
         public int Numero { get; set; }

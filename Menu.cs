@@ -355,7 +355,7 @@ namespace HotelRefugioDelSol
                                 }
                         estadisticas.ListarHuespedesPorAlfabeto(controladoraHuspedes.ListaHuespedes);
                         int inputHuespedInt;
-                        bool inputHuespedOk
+                        bool inputHuespedOk;
                         do
                         {
                             Console.WriteLine("Cédula del huésped:");
