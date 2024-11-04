@@ -51,18 +51,18 @@ namespace HotelRefugioDelSol
             }
         }
 
-        public void MostrarDiezAptosMasRerservados(List<Apartamento> listaApartamentos)
+        public void MostrarDiezAptosMasRerservados(ControladoraApartamentos controladoraApartamentos)
         {
-            ControladoraApartamentos controladoraApartamentos = new ControladoraApartamentos();
-            listaApartamentos.Sort((apto1, apto2) => apto2.CantVecesReservado.CompareTo(apto1.CantVecesReservado));
+            controladoraApartamentos.ListaApartamentos.Sort((apto1, apto2) => apto2.CantVecesReservado.CompareTo(apto1.CantVecesReservado));
 
-            Console.WriteLine("Los 10 apartamentos más reservados:");
+            Console.WriteLine("========== Los 10 apartamentos más reservados ==========");
 
             int contador = 0;
-            foreach (Apartamento apto in listaApartamentos)
+            foreach (Apartamento apto in controladoraApartamentos.ListaApartamentos)
             {
                 controladoraApartamentos.MostrarApartamento(apto.Numero);
                 contador++;
+                Console.WriteLine("");
                 if (contador == 10)
                 {
                     break;
@@ -88,6 +88,20 @@ namespace HotelRefugioDelSol
             else
             {
                 Console.WriteLine("No hay huespedes en la lista");
+            }
+        }
+
+        public bool CheaquearNumero(string input, out int numero)
+        {
+            bool res = int.TryParse(input, out numero);
+            if (res)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Numero no valido");
+                return false;
             }
         }
     }

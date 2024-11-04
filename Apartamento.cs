@@ -7,16 +7,13 @@ using System.Threading.Tasks;
 namespace HotelRefugioDelSol
 {
     public class Apartamento
-    {
-        public string CodApartamento { get; set; }
-
+    { 
         public string Ubicacion { get; set; }
 
         public int Numero { get; set; }
 
         public int CantHabitaciones { get; set; }
 
-        public bool Estado { get; set; }
         public float Precio { get; set; }
 
         public int CantVecesReservado { get; set; }
@@ -25,7 +22,6 @@ namespace HotelRefugioDelSol
 
         public Apartamento(string ubicacion, int CantHabit)
         {
-            CodApartamento = GenerarCodigoApartamento(this.Ubicacion ?? string.Empty, this.Numero);
             Ubicacion = ubicacion;
             Numero = GenerarNumero();
             CantHabitaciones = CantHabit;
@@ -37,10 +33,7 @@ namespace HotelRefugioDelSol
             contadorNumeroApartamento++;
             return contadorNumeroApartamento;
         }
-        public string GenerarCodigoApartamento(String ubicacion, int numero) 
-        {
-            return $"{ubicacion}-{numero}";
-        }
+        
 
         public float GenerarPrecio(string ubicacion)
         {

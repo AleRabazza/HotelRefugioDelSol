@@ -138,26 +138,6 @@ namespace HotelRefugioDelSol
             }
         }
 
-        public void ListarApartamentosDisponibles()
-        {
-            List<Apartamento> apartamentosDisponibles = ListaApartamentos.FindAll(apto => apto.Estado == false);
-
-            if (apartamentosDisponibles.Count > 0)
-            {
-                Console.WriteLine("=========Apartamentos disponibles =========");
-                foreach (Apartamento apto in apartamentosDisponibles)
-                {
-                    Console.WriteLine($"Número: {apto.Numero}, Ubicación: {apto.Ubicacion}, Habitaciones: {apto.CantHabitaciones}, Precio: {apto.Precio} USD");
-                }
-                Console.WriteLine("===========================================");
-            }
-            else
-            {
-                Console.WriteLine("No hay apartamentos disponibles.");
-            }
-        }
-
-
         public Apartamento? BuscarApartamento(int numeroApartamento)
         {
             return ListaApartamentos.Find(apto => apto.Numero == numeroApartamento);
@@ -172,7 +152,6 @@ namespace HotelRefugioDelSol
                 Console.WriteLine($"Apartamento Número: {apartamento.Numero}");
                 Console.WriteLine($"Ubicación: {apartamento.Ubicacion}");
                 Console.WriteLine($"Habitaciones: {apartamento.CantHabitaciones}");
-                Console.WriteLine($"Estado: {(apartamento.Estado ? "Reservado" : "Disponible")}");
                 Console.WriteLine($"Precio: {apartamento.Precio} USD por noche");
                 Console.WriteLine($"Veces reservado: {apartamento.CantVecesReservado}");
             }

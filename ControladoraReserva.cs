@@ -20,6 +20,7 @@ namespace HotelRefugioDelSol
             if (reservaAAniadir != null)
             {
                 ListaReservas.Add(reservaAAniadir);
+                reservaAAniadir.ApartamentoRes.CantVecesReservado += 1;
                 Console.WriteLine("La reserva ha sido añadida correctamente");
                 return true;
 
@@ -95,7 +96,10 @@ namespace HotelRefugioDelSol
             {
                 if (!(reserva.FechaEgreso <= fechaIngreso || reserva.FechaIngreso >= fechaEgreso))
                 {
-                    apartamentosDisponibles.Remove(reserva.ApartamentoRes);
+                    if (reserva.EstadoReserva == true)
+                    {
+                        apartamentosDisponibles.Remove(reserva.ApartamentoRes);
+                    }
                 }
             }
 
