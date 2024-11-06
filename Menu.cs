@@ -92,7 +92,7 @@ namespace HotelRefugioDelSol
                     else
                     {
                         Console.WriteLine("Huesped no encontrado");
-                        Console.Clear();
+                       Console.WriteLine(" ");
                     }
                     break;
 
