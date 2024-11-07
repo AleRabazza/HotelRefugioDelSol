@@ -559,6 +559,7 @@ namespace HotelRefugioDelSol
                     break;
 
                 case "5":
+                    controladoraHuspedes.ListarHuesped(controladoraHuspedes.ListaHuespedes);
 
                     Console.WriteLine("Ingrese la cedula del huesped al que desea buscar sus reservas: ");
                     int cedula1 = int.Parse(Console.ReadLine() ?? string.Empty);
