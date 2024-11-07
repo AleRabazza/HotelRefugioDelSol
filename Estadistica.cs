@@ -43,11 +43,15 @@ namespace HotelRefugioDelSol
                 foreach (Reserva reserva in reservasDelDia)
                 {
                     Console.WriteLine($"Apartamento {reserva.ApartamentoRes.Numero}, Huésped CI: {reserva.HuespedRes.Ci}");
+                    
                 }
+                Console.WriteLine(" ");
             }
             else
             {
+                Console.WriteLine(" ");
                 Console.WriteLine("No hay reservas en el día:" + dia);
+                Console.WriteLine(" ");
             }
         }
 

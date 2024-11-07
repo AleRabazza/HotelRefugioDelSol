@@ -50,25 +50,8 @@ namespace HotelRefugioDelSol
                 Console.WriteLine("La ubicacion del apartamento fue modificada corretamente. ");
                 Console.WriteLine("");
             }
+  
             else if (input == "2")
-            {
-                Console.WriteLine("Ingrese el nuevo numero del Apartamento");
-                int nuevoNumero = int.Parse(Console.ReadLine() ?? string.Empty);
-                if (nuevoNumero <= 0)
-                {
-                    do
-                    {
-                        Console.WriteLine("El numero del apartamento tiene que ser mayor a 0");
-                        Console.WriteLine("Ingrese nuevamente el nuevo numero del Apartamento");
-                        nuevoNumero = int.Parse(Console.ReadLine() ?? string.Empty);
-
-                    } while (nuevoNumero <= 0);
-                }
-                apartamento.Numero = nuevoNumero;
-                Console.WriteLine("El numero del apartamento fue modificado correctamente.");
-                Console.WriteLine("");
-            }
-            else if (input == "3")
             {
                 Console.WriteLine("Ingrese la nueva cantidad de habitaciones del apartamento: (3|4)");
                 int nuevaCantidadDeHab = int.Parse(Console.ReadLine() ?? string.Empty);
@@ -86,7 +69,7 @@ namespace HotelRefugioDelSol
                 Console.WriteLine("La cantidad de habitaciones del apartamento fue modificada correctamente");
                 Console.WriteLine("");
             }
-            else if (input == "4")
+            else if (input == "3")
             {
                 Console.WriteLine("Ingrese la nueva ubicacion del apartamento: (noroeste|suroeste|noreste|sureste) ");
                 string nuevaUbicacion = Console.ReadLine() ?? string.Empty;
@@ -100,19 +83,6 @@ namespace HotelRefugioDelSol
                     } while (nuevaUbicacion != "noroeste" && nuevaUbicacion != "suroeste" && nuevaUbicacion != "noreste" && nuevaUbicacion != "sureste");
                 }
                 apartamento.Ubicacion = nuevaUbicacion;
-
-                Console.WriteLine("Ingrese el nuevo numero del Apartamento");
-                int nuevoNumero = int.Parse(Console.ReadLine() ?? string.Empty);
-                if(nuevoNumero <= 0){ 
-                    do
-                    {
-                        Console.WriteLine("El numero del apartamento tiene que ser mayor a 0");
-                        Console.WriteLine("Ingrese nuevamente el nuevo numero del Apartamento");
-                        nuevoNumero = int.Parse(Console.ReadLine() ?? string.Empty);
-
-                    } while (nuevoNumero <= 0);
-                }
-                apartamento.Numero = nuevoNumero;
 
                 Console.WriteLine("Ingrese la nueva cantidad de habitaciones del apartamento: (3|4)");
                 int nuevaCantidadDeHab = int.Parse(Console.ReadLine() ?? string.Empty);
@@ -141,6 +111,15 @@ namespace HotelRefugioDelSol
         public Apartamento? BuscarApartamento(int numeroApartamento)
         {
             return ListaApartamentos.Find(apto => apto.Numero == numeroApartamento);
+        }
+
+        public void ListarApartamentos(List<Apartamento> apartamentos)
+        {
+
+            foreach(Apartamento aptos in apartamentos)
+            {
+                Console.WriteLine("Numero apatamento:" + aptos.Numero);
+            }
         }
 
         public void MostrarApartamento(int numeroApartamento)
