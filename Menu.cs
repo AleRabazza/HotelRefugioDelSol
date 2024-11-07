@@ -76,7 +76,7 @@ namespace HotelRefugioDelSol
                     }
                     else
                     {
-                        Console.WriteLine("Ya existe un huesped con esa cedula.");
+                        Console.WriteLine($"Ya existe un huesped con la {cedula}");
                     }
 
                     break;
@@ -91,8 +91,8 @@ namespace HotelRefugioDelSol
                     }
                     else
                     {
-                        Console.WriteLine("Huesped no encontrado");
-                       Console.WriteLine(" ");
+                        Console.WriteLine($"No hay un huesped con la cedula {cedula1} en el sistema");
+                        Console.WriteLine(" ");
                     }
                     break;
 
@@ -102,23 +102,31 @@ namespace HotelRefugioDelSol
                         Console.WriteLine("Ingrese la cedula del Huesped a modificar");
                         int cedula2 = int.Parse(Console.ReadLine() ?? string.Empty);
                         Huesped? huesped2 = controladoraHuespedes.BuscarHuespedPorCi(cedula2);
+                        string InputModificar;
                         if (huesped2 != null)
                         {
-                            controladoraHuespedes.MostrarHuesped(huesped2);
-                            Console.WriteLine("Ingrese el valor que desea modificar");
-                            Console.WriteLine("(1) Nombre");
-                            Console.WriteLine("(2) Cedula");
-                            Console.WriteLine("(3) Nombre y Cedula");
-                            string InputModificar = Console.ReadLine() ?? string.Empty;
-                            controladoraHuespedes.ModificarHuesped(huesped2, InputModificar);
+                            do
+                            {
+                                Console.WriteLine("");
+                                controladoraHuespedes.MostrarHuesped(huesped2);
+                                Console.WriteLine("Ingrese el valor que desea modificar");
+                                Console.WriteLine("(1) Nombre");
+                                Console.WriteLine("(2) Cedula");
+                                Console.WriteLine("(3) Nombre y Cedula");
+                                Console.WriteLine("(4) Cancelar operacion.");
+                                InputModificar = Console.ReadLine() ?? string.Empty;
+                                controladoraHuespedes.ModificarHuesped(huesped2, InputModificar);
+                            } while (InputModificar != "1" && InputModificar != "2" && InputModificar != "3" && InputModificar != "4");
 
                         }
+                        else
+                        {
+                            Console.WriteLine("No hay huespedes ingresados");
+                            Console.WriteLine("");
+                        }
+
                     }
-                    else
-                    {
-                        Console.WriteLine("No hay huespedes ingresados");
-                        Console.WriteLine("");
-                    }
+                    
                     break;
 
                 case "5":
@@ -126,14 +134,22 @@ namespace HotelRefugioDelSol
                     break;
 
                 case "4":
+                    controladoraHuespedes.ListarHuesped(controladoraHuespedes.ListaHuespedes);
                     Console.WriteLine("Ingrese la cedula del huesped a eliminar");
                     int cedula3 = int.Parse(Console.ReadLine() ?? string.Empty);
                     Huesped? huespedEliminar = controladoraHuespedes.BuscarHuespedPorCi(cedula3);
                     if (huespedEliminar != null)
                     {
+                       
                         controladoraHuespedes.ListaHuespedes.Remove(huespedEliminar);
                         Console.Clear();
                         Console.WriteLine("Huesped eliminado correctamente");
+                    }
+                    if(huespedEliminar == null)
+                    {
+                        Console.WriteLine(" ");
+                        Console.WriteLine($"No hay un huesped con el numero de cedula {cedula3} en el sistema");
+                        Console.WriteLine(" ");
                     }
                     break;
 

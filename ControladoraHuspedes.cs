@@ -33,8 +33,15 @@ namespace HotelRefugioDelSol
                 return false;
             }
         }
+        public void ListarHuesped(List<Huesped> huespedes)
+        {
+            foreach (Huesped huesped in huespedes)
+            {
+                Console.WriteLine($"== {huesped.Nombre} - ( {huesped.Ci} )");
 
-        
+                Console.WriteLine("");
+            }
+        }
 
         public Huesped? BuscarHuespedPorCi(int ci)
         {
@@ -85,6 +92,10 @@ namespace HotelRefugioDelSol
                 Console.Clear();
                 Console.WriteLine("Modificado correctamente");
                 Console.WriteLine("");
+            }
+            else if (input == "4")
+            {
+                Console.WriteLine(" ");
             }
             else
             {
