@@ -29,7 +29,7 @@ namespace HotelRefugioDelSol
                         MostrarMenuHuespedes(huespedes);
                         break;
                     case "2":
-                        MostrarMenuApartamento(apartamentos);
+                        MostrarMenuApartamento(apartamentos, estadistica);
                         break;
                     case "3":
                         MostrarMenuReservas(apartamentos, reservas, huespedes, estadistica);
@@ -145,7 +145,7 @@ namespace HotelRefugioDelSol
             }
         }
 
-        public void MostrarMenuApartamento(ControladoraApartamentos controladoraApartamento)
+        public void MostrarMenuApartamento(ControladoraApartamentos controladoraApartamento, Estadistica estadisiticas)
         {
             string inputApartamento = string.Empty;
             Console.WriteLine(" ");
@@ -261,19 +261,26 @@ namespace HotelRefugioDelSol
                         controladoraApartamento.MostrarApartamento(apto.Numero);
                         Console.WriteLine(" ");
                     }
-                    int numeroEliminar;
 
-                    Console.WriteLine("Ingrese el numero del apartamento a eliminar");
-                    Console.WriteLine(" ");
-                    numeroEliminar = int.Parse(Console.ReadLine() ?? string.Empty);
-                    controladoraApartamento.EliminarApartamento(numeroEliminar);
+                    string numeroEliminar;
+                    int numeroEliminarInt;
+                    bool numOk;                    
+                    do
+                    {
+                        Console.WriteLine("Ingrese el numero del apartamento a eliminar");
+                        Console.WriteLine(" ");
+                        numeroEliminar = Console.ReadLine() ?? string.Empty;
+                        numOk = estadisiticas.CheaquearNumero(numeroEliminar, out numeroEliminarInt);
+
+                    } while (!numOk);
+                    controladoraApartamento.EliminarApartamento(numeroEliminarInt);
                     break;
 
 
                 default:
                     Console.WriteLine($"La opcion {inputApartamento} no es valida");
                     Console.WriteLine(" ");
-                    MostrarMenuApartamento(controladoraApartamento);
+                    MostrarMenuApartamento(controladoraApartamento, estadisiticas);
                     break;
 
             }
