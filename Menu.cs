@@ -287,6 +287,14 @@ namespace HotelRefugioDelSol
                         int numAptoInt;
                         bool numAptoOk;
                         string numApartamento;
+
+                        Console.Clear();
+                        Console.WriteLine("Lista Apartamentos");
+                        foreach(Apartamento aptoMod in controladoraApartamento.ListaApartamentos)
+                        {
+                            Console.WriteLine($"Numero Apartamento: {aptoMod.Numero}");
+                        }
+
                         do
                         {
                             Console.WriteLine("Ingrese el numero del apartamento que desea modificar");
