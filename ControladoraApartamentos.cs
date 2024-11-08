@@ -31,7 +31,7 @@ namespace HotelRefugioDelSol
 
         } 
 
-        public void ModificarApartamento (Apartamento apartamento, string input)
+        public void ModificarApartamento (Apartamento apartamento, string input, Estadistica estadistica)
         {
             if (input == "1")
             {
@@ -52,6 +52,24 @@ namespace HotelRefugioDelSol
             }
   
             else if (input == "2")
+            {
+                string nuevoNumero;
+                bool numOk;
+                int numInt;
+                do
+                {
+                    Console.WriteLine("Ingrese el nuevo numero del Apartamento");
+                    Console.WriteLine("El numero del apartamento tiene que ser mayor a 0");
+                    nuevoNumero = Console.ReadLine() ?? string.Empty;
+                    numOk = estadistica.CheaquearNumero(nuevoNumero, out numInt);
+
+                } while (!numOk && !(numInt > 0));
+                
+                apartamento.Numero = numInt;
+                Console.WriteLine("El numero del apartamento fue modificado correctamente.");
+                Console.WriteLine("");
+            }
+            else if (input == "3")
             {
                 Console.WriteLine("Ingrese la nueva cantidad de habitaciones del apartamento: (3|4)");
                 int nuevaCantidadDeHab = int.Parse(Console.ReadLine() ?? string.Empty);
