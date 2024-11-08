@@ -98,7 +98,6 @@ namespace HotelRefugioDelSol
                     int cedulaInt1;
                     do
                     {
-                        Console.WriteLine("Ingrese la cedula del Huesped");
                         string cedula1 = Console.ReadLine() ?? string.Empty;
                         cedulaOk1 = estadisitca.CheaquearNumero(cedula1, out cedulaInt1);                        
                     } while (!cedulaOk1);                   
@@ -125,7 +124,6 @@ namespace HotelRefugioDelSol
                         int cedulaInt2;
                         do
                         {
-                            Console.WriteLine("Ingrese la cedula del Huesped");
                             string cedula2 = Console.ReadLine() ?? string.Empty;
                             cedulaOk2 = estadisitca.CheaquearNumero(cedula2, out cedulaInt2);                                                  
                         } while (!cedulaOk2);
@@ -330,9 +328,9 @@ namespace HotelRefugioDelSol
                     break;
 
                 case "3":
+                    Console.Clear();
                     foreach (Apartamento apto in controladoraApartamento.ListaApartamentos)
                     {
-                        Console.Clear();
                         controladoraApartamento.MostrarApartamento(apto.Numero);
                         Console.WriteLine(" ");
                     }
