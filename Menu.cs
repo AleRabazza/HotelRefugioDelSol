@@ -87,7 +87,7 @@ namespace HotelRefugioDelSol
                     }
                     else
                     {
-                        Console.WriteLine($"Ya existe un huesped con la {cedula}");
+                        Console.WriteLine($"Ya existe un huesped con la {cedulaInt}");
                     }
 
                     break;
