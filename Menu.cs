@@ -506,11 +506,13 @@ namespace HotelRefugioDelSol
                         bool resultado = controladoraReserva.CancelarReserva(id);
                         if (resultado)
                         {
+                            Console.Clear();
                             Console.WriteLine("La reserva fue cancelada correctamente.");
                             Console.WriteLine(" ");
                         }
                         else
                         {
+                            Console.Clear();
                             Console.WriteLine("No se pudo eliminar la reserva.");
                             Console.WriteLine(" ");
                         }
