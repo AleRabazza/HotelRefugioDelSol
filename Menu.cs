@@ -118,6 +118,7 @@ namespace HotelRefugioDelSol
                 case "3":
                     if (controladoraHuespedes.ListaHuespedes.Count > 0)
                     {
+                        controladoraHuespedes.ListarHuespedes(controladoraHuespedes.ListaHuespedes);
                         Console.WriteLine("Ingrese la cedula del Huesped a modificar");
                         Console.WriteLine(" ");
                         bool cedulaOk2;
