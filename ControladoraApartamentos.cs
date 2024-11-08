@@ -154,6 +154,7 @@ namespace HotelRefugioDelSol
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("Apartamento no encontrado.");
             }
         }
@@ -166,11 +167,13 @@ namespace HotelRefugioDelSol
                 ListaApartamentos.Remove(aptoAEliminar);
                 Console.Clear();
                 Console.WriteLine("Apartamento eliminado correctamente");
+                Console.WriteLine("");
             }
             else
             {
                 Console.Clear();
                 Console.WriteLine("Apartamento no encontrado");
+                Console.WriteLine("");
             }
         }
 

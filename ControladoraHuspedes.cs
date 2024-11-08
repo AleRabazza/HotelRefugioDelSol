@@ -99,7 +99,9 @@ namespace HotelRefugioDelSol
             }
             else
             {
+                Console.Clear();
                 Console.WriteLine("La opcion ingresada no es correcta.");
+                Console.WriteLine(" ");
             }
         }
 
@@ -107,7 +109,6 @@ namespace HotelRefugioDelSol
         public void MostrarHuesped(Huesped huesped1)
         {
             Console.WriteLine($"== {huesped1.Nombre} - ( {huesped1.Ci} )");
-            
             Console.WriteLine("");
         }
     }
