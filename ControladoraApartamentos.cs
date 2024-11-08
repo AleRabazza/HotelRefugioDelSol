@@ -58,20 +58,28 @@ namespace HotelRefugioDelSol
                 int numInt;
                 do
                 {
-                    Console.WriteLine("Ingrese el nuevo numero del Apartamento");
-                    Console.WriteLine("El numero del apartamento tiene que ser mayor a 0");
+                    Console.WriteLine("Ingrese la nueva cantidad de Habitaciones");
+                    Console.WriteLine("El numero de habitaciones tiene que ser 3 o 4");
                     nuevoNumero = Console.ReadLine() ?? string.Empty;
                     numOk = estadistica.CheaquearNumero(nuevoNumero, out numInt);
-
-                } while (!numOk && !(numInt > 0));
+                    if (numOk)
+                    {
+                        if (numInt != 3 || numInt != 4)
+                        {
+                            numOk = false;
+                            Console.WriteLine("El numero debe ser estar entre 3 y 4");
+                        }
+                    }
+                } while (!numOk);
                 
-                apartamento.Numero = numInt;
-                Console.WriteLine("El numero del apartamento fue modificado correctamente.");
+                apartamento.CantHabitaciones = numInt;
+                Console.WriteLine("La cantidad de habitaciones modificada correctamente.");
                 Console.WriteLine("");
             }
             else if (input == "3")
             {
                 Console.WriteLine("Ingrese la nueva cantidad de habitaciones del apartamento: (3|4)");
+                
                 int nuevaCantidadDeHab = int.Parse(Console.ReadLine() ?? string.Empty);
                 if (nuevaCantidadDeHab != 4 && nuevaCantidadDeHab != 3)
                 {

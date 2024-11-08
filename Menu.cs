@@ -74,12 +74,7 @@ namespace HotelRefugioDelSol
                     {
                         Console.WriteLine("Ingrese la cedula del Huesped");
                         string cedula = Console.ReadLine() ?? string.Empty;
-                        cedulaOk = estadisitca.CheaquearNumero(cedula, out cedulaInt);
-                        if (cedulaOk)
-                        {
-                            controladoraHuespedes.BuscarHuespedPorCi(cedulaInt);
-                        }
-                        controladoraHuespedes.BuscarHuespedPorCi(cedulaInt);
+                        cedulaOk = estadisitca.CheaquearNumero(cedula, out cedulaInt);                        
                     } while (!cedulaOk);
                     
                     if (controladoraHuespedes.BuscarHuespedPorCi(cedulaInt) == null)
@@ -99,8 +94,15 @@ namespace HotelRefugioDelSol
 
                 case "2":
                     Console.WriteLine("Ingrese la cedula del Huesped a buscar");
-                    int cedula1 = int.Parse(Console.ReadLine() ?? string.Empty);
-                    Huesped? huespedBuscado = controladoraHuespedes.BuscarHuespedPorCi(cedula1);
+                    bool cedulaOk1;
+                    int cedulaInt1;
+                    do
+                    {
+                        Console.WriteLine("Ingrese la cedula del Huesped");
+                        string cedula1 = Console.ReadLine() ?? string.Empty;
+                        cedulaOk1 = estadisitca.CheaquearNumero(cedula1, out cedulaInt1);                        
+                    } while (!cedulaOk1);                   
+                    Huesped? huespedBuscado = controladoraHuespedes.BuscarHuespedPorCi(cedulaInt1);
                     if (huespedBuscado != null)
                     {
                         Console.Clear();
@@ -109,7 +111,7 @@ namespace HotelRefugioDelSol
                     }
                     else
                     {
-                        Console.WriteLine($"No hay un huesped con la cedula {cedula1} en el sistema");
+                        Console.WriteLine($"No hay un huesped con la cedula {cedulaInt1} en el sistema");
                         Console.WriteLine(" ");
                     }
                     break;
@@ -119,8 +121,15 @@ namespace HotelRefugioDelSol
                     {
                         Console.WriteLine("Ingrese la cedula del Huesped a modificar");
                         Console.WriteLine(" ");
-                        int cedula2 = int.Parse(Console.ReadLine() ?? string.Empty);
-                        Huesped? huesped2 = controladoraHuespedes.BuscarHuespedPorCi(cedula2);
+                        bool cedulaOk2;
+                        int cedulaInt2;
+                        do
+                        {
+                            Console.WriteLine("Ingrese la cedula del Huesped");
+                            string cedula2 = Console.ReadLine() ?? string.Empty;
+                            cedulaOk2 = estadisitca.CheaquearNumero(cedula2, out cedulaInt2);                                                  
+                        } while (!cedulaOk2);
+                        Huesped? huesped2 = controladoraHuespedes.BuscarHuespedPorCi(cedulaInt2);
                         string InputModificar;
                         if (huesped2 != null)
                         {
@@ -246,6 +255,14 @@ namespace HotelRefugioDelSol
                     int apartamentoBuscarInt;
                     do
                     {
+                        Console.Clear();
+                        Console.WriteLine("Numeros de apartamentos para buscar");
+                        Console.WriteLine("");
+                        foreach(Apartamento apto in controladoraApartamento.ListaApartamentos)
+                        {
+                            Console.WriteLine($"Numero Apartamento: {apto.Numero}");
+                        }
+                        Console.WriteLine("");
                         Console.WriteLine("Ingrese el numero del apartamento que desea buscar:");
                         apartamentoBuscar = Console.ReadLine() ?? string.Empty;
                         aptoOk = estadisiticas.CheaquearNumero(apartamentoBuscar, out apartamentoBuscarInt);
