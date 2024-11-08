@@ -33,7 +33,7 @@ namespace HotelRefugioDelSol
                 return false;
             }
         }
-        public void ListarHuesped(List<Huesped> huespedes)
+        public void ListarHuespedes(List<Huesped> huespedes)
         {
             foreach (Huesped huesped in huespedes)
             {

@@ -134,7 +134,7 @@ namespace HotelRefugioDelSol
                     break;
 
                 case "4":
-                    controladoraHuespedes.ListarHuesped(controladoraHuespedes.ListaHuespedes);
+                    controladoraHuespedes.ListarHuespedes(controladoraHuespedes.ListaHuespedes);
                     Console.WriteLine("Ingrese la cedula del huesped a eliminar");
                     int cedula3 = int.Parse(Console.ReadLine() ?? string.Empty);
                     Huesped? huespedEliminar = controladoraHuespedes.BuscarHuespedPorCi(cedula3);
@@ -239,7 +239,7 @@ namespace HotelRefugioDelSol
 
                     if (controladoraApartamento.ListaApartamentos.Count > 0)
                     {
-                        Console.WriteLine("Numeros de apartamentos para buscar");
+                        Console.WriteLine("Lista apartamentos: ");
                         controladoraApartamento.ListarApartamentos(controladoraApartamento.ListaApartamentos);
                         Console.WriteLine("Ingrese el numero del apartamento que desea modificar");
                         int numApartamento = int.Parse(Console.ReadLine() ?? string.Empty);
@@ -559,7 +559,7 @@ namespace HotelRefugioDelSol
                     break;
 
                 case "5":
-                    controladoraHuspedes.ListarHuesped(controladoraHuspedes.ListaHuespedes);
+                    controladoraHuspedes.ListarHuespedes(controladoraHuspedes.ListaHuespedes);
 
                     Console.WriteLine("Ingrese la cedula del huesped al que desea buscar sus reservas: ");
                     int cedula1 = int.Parse(Console.ReadLine() ?? string.Empty);
